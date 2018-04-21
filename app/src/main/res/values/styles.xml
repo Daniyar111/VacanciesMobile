@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPurpleLight</item>
+        <item name="colorPrimaryDark">@color/colorPurple</item>
+        <item name="colorAccent">@color/colorOrange</item>
+    </style>
+
+    <style name="SplashScreenTextTheme">
+
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DialogTextTheme">
+
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">@dimen/padding_dialog</item>
+        <item name="android:color">@color/colorDarkGrey</item>
+        <item name="android:background">@color/colorLightGrey</item>
+    </style>
+</resources>

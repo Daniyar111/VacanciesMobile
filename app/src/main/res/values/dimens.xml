@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Splash Screen-->
+    <dimen name="padding_bottom">40sp</dimen>
+    <dimen name="margin_image_bottom">10sp</dimen>
+    <dimen name="padding_dialog">10sp</dimen>
+    <dimen name="padding_left_radio_group">10sp</dimen>
+
+</resources>

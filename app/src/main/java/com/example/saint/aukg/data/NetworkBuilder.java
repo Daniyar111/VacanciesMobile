@@ -16,10 +16,8 @@ public final class NetworkBuilder {
 
     private static RetrofitService service = null;
 
-    public static RetrofitService initService(){
-
-        if(service == null){
-
+    public static RetrofitService initService() {
+        if (service == null) {
             service = new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -27,11 +25,10 @@ public final class NetworkBuilder {
                     .build()
                     .create(RetrofitService.class);
         }
-
         return service;
     }
 
-    private static OkHttpClient getClient(){
+    private static OkHttpClient getClient() {
 
         return new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

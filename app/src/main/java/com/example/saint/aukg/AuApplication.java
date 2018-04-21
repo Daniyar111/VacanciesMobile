@@ -14,7 +14,6 @@ public class AuApplication extends Application{
     }
 
     public static AuApplication get(Context context){
-
         return (AuApplication) context.getApplicationContext();
     }
 

@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.activities;
+package com.example.saint.aukg.ui;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,9 +8,9 @@ import android.view.View;
 
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.models.TabPagerItem;
-import com.example.saint.aukg.ui.fragments.SuitableFragment;
-import com.example.saint.aukg.ui.fragments.VacanciesFragment;
-import com.example.saint.aukg.ui.adapters.ArrayPagerAdapter;
+import com.example.saint.aukg.ui.suitable.SuitableFragment;
+import com.example.saint.aukg.ui.vacancies.VacanciesFragment;
+import com.example.saint.aukg.ui.main.ArrayPagerAdapter;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;

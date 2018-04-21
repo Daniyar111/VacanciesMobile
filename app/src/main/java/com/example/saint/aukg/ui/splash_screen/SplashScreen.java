@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.activities;
+package com.example.saint.aukg.ui.splash_screen;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.ui.main.MainActivity;
 
 public class SplashScreen extends AppCompatActivity {
 

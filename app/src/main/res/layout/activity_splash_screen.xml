@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_screen_background"
-    tools:context="com.example.saint.aukg.ui.activities.SplashScreen">
+    tools:context="com.example.saint.aukg.ui.splash_screen.SplashScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +21,13 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_image_bottom"/>
 
-        <com.example.saint.aukg.utils.fonts.TextFontLight
+        <com.example.saint.aukg.ui.fonts.TextFontLight
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/aukg"
             android:theme="@style/SplashScreenTextTheme"/>
 
-        <com.example.saint.aukg.utils.fonts.TextFontLight
+        <com.example.saint.aukg.ui.fonts.TextFontLight
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/vacancy"

@@ -1,10 +1,11 @@
-package com.example.saint.aukg.ui.fragments;
+package com.example.saint.aukg.ui.search;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.ui.BaseFragment;
 
 public class DialogNameFragment extends BaseFragment {
     @Override

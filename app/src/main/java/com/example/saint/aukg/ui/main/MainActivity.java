@@ -1,14 +1,11 @@
-package com.example.saint.aukg.ui.activities;
+package com.example.saint.aukg.ui.main;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
 
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.ui.activities.BaseActivity;
+import com.example.saint.aukg.ui.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

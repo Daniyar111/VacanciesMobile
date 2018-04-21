@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.fragments;
+package com.example.saint.aukg.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -1,7 +1,7 @@
-package com.example.saint.aukg.ui.fragments;
+package com.example.saint.aukg.ui.suitable;
 
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.ui.fragments.BaseFragment;
+import com.example.saint.aukg.ui.BaseFragment;
 
 /**
  * Created by saint on 15.04.2018.

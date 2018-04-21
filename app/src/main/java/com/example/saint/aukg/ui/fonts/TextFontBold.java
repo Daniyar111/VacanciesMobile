@@ -1,4 +1,4 @@
-package com.example.saint.aukg.utils.fonts;
+package com.example.saint.aukg.ui.fonts;
 
 import android.content.Context;
 import android.graphics.Typeface;

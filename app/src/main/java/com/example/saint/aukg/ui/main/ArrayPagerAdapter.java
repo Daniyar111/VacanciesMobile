@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.adapters;
+package com.example.saint.aukg.ui.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

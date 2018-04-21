@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.fragments;
+package com.example.saint.aukg.ui.vacancies;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.ui.adapters.MainVacanciesAdapter;
+import com.example.saint.aukg.ui.BaseFragment;
 
 import java.util.ArrayList;
 

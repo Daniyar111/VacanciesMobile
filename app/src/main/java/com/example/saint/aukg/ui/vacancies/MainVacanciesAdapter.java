@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.adapters;
+package com.example.saint.aukg.ui.vacancies;
 
 
 import android.support.v7.widget.RecyclerView;

@@ -47,5 +47,4 @@ public final class NetworkBuilder {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
-
 }

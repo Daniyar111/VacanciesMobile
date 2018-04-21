@@ -6,7 +6,6 @@ import android.content.Context;
 import com.example.saint.aukg.data.RetrofitService;
 
 public class AuApplication extends Application{
-
     private RetrofitService service;
 
     @Override

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
@@ -9,17 +10,55 @@
     </style>
 
     <style name="SplashScreenTextTheme">
-
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">22sp</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="DialogTextTheme">
-
         <item name="android:textSize">20sp</item>
         <item name="android:padding">@dimen/padding_dialog</item>
         <item name="android:color">@color/colorDarkGrey</item>
         <item name="android:background">@color/colorLightGrey</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <style name="DialogRadioGroupTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/padding_dialog</item>
+    </style>
+
+    <style name="DialogLinearLayoutTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">@dimen/padding_left_radio_group</item>
+    </style>
+
+    <style name="DialogLinearLayoutButtonTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="DialogRadioButtonTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="DialogButtonTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPurple</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_dialog</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -9,4 +9,5 @@
     <color name="colorOrange">#FFA500</color>
     <color name="colorDarkGrey">#6D6D6D</color>
     <color name="colorLightGrey">#E2E2E2</color>
+    <color name="colorTransparent">#00ffffff</color>
 </resources>

@@ -46,7 +46,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
         private TextView textViewCard;
         public ViewHolder(View view) {
             super(view);
-            textViewCard = view.findViewById(R.id.textViewCard);
+//            textViewCard = view.findViewById(R.id.textViewCard);
         }
     }
 }

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saint.aukg.ui.details.DetailsActivity"
+    tools:showIn="@layout/activity_details">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15sp">
+            <com.example.saint.aukg.ui.fonts.TextFontBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Header"
+                android:textColor="@color/colorPurple"
+                android:textSize="22sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp">
+
+                <FrameLayout
+                    android:id="@+id/imageProfile"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10sp"
+                    android:background="@drawable/ic_profile_name" />
+
+                <TextView
+                    android:id="@+id/textViewProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imageProfile"
+                    android:text="daniyar.changylov"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="12:53 22 Apr 2018"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:id="@+id/relativeSalary">
+
+                    <FrameLayout
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:id="@+id/imageSalary"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10sp"
+                        android:background="@drawable/ic_salary"/>
+
+                    <TextView
+                        android:layout_toRightOf="@id/imageSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewSalary"
+                        android:textSize="15sp"
+                        android:text="fhdskjfhdkshfksdjhfskhskfs"/>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/border_full"
+                    android:text="diesel.elcat.kg"
+                    android:textSize="17sp"
+                    android:layout_marginTop="5sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_bottom">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:id="@+id/relativeCall">
+
+                    <FrameLayout
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:id="@+id/imageCall"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10sp"
+                        android:background="@drawable/ic_telephone_number"/>
+
+                    <TextView
+                        android:layout_toRightOf="@id/imageCall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewCall"
+                        android:textSize="15sp"
+                        android:text="fhdskjfhdkshfksdjhfskhskfs"/>
+                </RelativeLayout>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkbox"
+                    android:button="@drawable/checkbox_star"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5sp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow "/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v7.widget.CardView>

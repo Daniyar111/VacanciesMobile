@@ -11,7 +11,9 @@
     <string name="five_thousand">5 000 +</string>
     <string name="flexible">Гибкий</string>
     <string name="full">Полный день</string>
+    <string name="next">Следующее</string>
     <string name="night">Ночной</string>
+    <string name="previous">Предыдущее</string>
     <string name="ready">Готово</string>
     <string name="regime">Режим работы</string>
     <string name="remotely">Удаленно</string>
@@ -24,4 +26,5 @@
     <string name="vacancy">Все вакансии Кыргызстана</string>
     <string name="vac_per_day">Вакансии за сутки</string>
     <string name="version">Версия: </string>
+    <string name="watched">Просмотрено</string>
 </resources>

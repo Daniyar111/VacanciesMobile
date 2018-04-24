@@ -62,13 +62,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/scrolling_details"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_weight="1"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/call" />
+    <include layout="@layout/scrolling_details"/>
 </LinearLayout>

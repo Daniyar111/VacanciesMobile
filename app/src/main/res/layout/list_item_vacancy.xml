@@ -24,6 +24,7 @@
                 android:background="@drawable/border_bottom">
 
                 <com.example.saint.aukg.ui.fonts.TextFontBold
+                    android:id="@+id/textViewProfession"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Header"
@@ -32,6 +33,7 @@
                     android:layout_weight="3"/>
 
                 <com.example.saint.aukg.ui.fonts.TextFontLight
+                    android:id="@+id/textViewDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="11:58 22 Apr 2018"
@@ -56,6 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
+                    android:id="@+id/textViewBody"
                     android:text="fndslfhslhjsdkhsdjlfhkdsllllllllllllllllllllllllllllllllldslbfskjfdskbfkjsdbfkjdsbfksjjbbkjfdsb"/>
             </RelativeLayout>
 
@@ -89,7 +92,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/checkbox"
+                    android:id="@+id/checkBoxFavorite"
                     android:button="@drawable/checkbox_star"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"

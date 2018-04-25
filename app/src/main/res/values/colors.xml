@@ -9,6 +9,6 @@
     <color name="colorOrange">#FFA500</color>
     <color name="colorOrangeDark">#7b5104</color>
     <color name="colorDarkGrey">#6D6D6D</color>
-    <color name="colorLightGrey">#E2E2E2</color>
+    <color name="colorLightGrey">#c4c4c4</color>
     <color name="colorTransparent">#00ffffff</color>
 </resources>

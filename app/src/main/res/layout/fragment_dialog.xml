@@ -1,72 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.saint.aukg.ui.fonts.TextFontBold
-        android:id="@+id/textViewRegime"
-        style="@style/DialogTextTheme"
-        android:text="@string/regime"/>
+    <RelativeLayout
+        android:id="@+id/relativeRegime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.saint.aukg.ui.fonts.TextFontBold
+            android:id="@+id/textViewRegime"
+            style="@style/DialogTextTheme"
+            android:text="@string/regime" />
+        <ImageButton
+            android:id="@+id/buttonClose"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="@drawable/ic_close_black_24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+
 
     <RadioGroup
-        android:layout_below="@id/textViewRegime"
         android:id="@+id/radioGroupRegime"
         style="@style/DialogRadioGroupTheme"
+        android:layout_below="@id/relativeRegime"
         android:weightSum="4">
-        <LinearLayout
-            style="@style/DialogLinearLayoutTheme">
-            <RadioButton
-                android:text="@string/any"
-                style="@style/DialogRadioButtonTheme"/>
+
+        <LinearLayout style="@style/DialogLinearLayoutTheme">
 
             <RadioButton
+                android:id="@+id/radioButtonRegimeAny"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/full"/>
+                android:text="@string/any" />
+
             <RadioButton
+                android:id="@+id/radioButtonFull"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/flexible"/>
+                android:text="@string/full" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFlexible"
+                style="@style/DialogRadioButtonTheme"
+                android:text="@string/flexible" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/DialogLinearLayoutTheme">
+
+        <LinearLayout style="@style/DialogLinearLayoutTheme">
+
             <RadioButton
+                android:id="@+id/radioButtonRemotely"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/remotely"/>
+                android:text="@string/remotely" />
+
             <RadioButton
+                android:id="@+id/radioButtonNight"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/night"/>
+                android:text="@string/night" />
         </LinearLayout>
     </RadioGroup>
 
     <com.example.saint.aukg.ui.fonts.TextFontBold
         android:id="@+id/textViewSalary"
-        android:layout_below="@id/radioGroupRegime"
         style="@style/DialogTextTheme"
-        android:text="@string/salary"/>
+        android:layout_below="@id/radioGroupRegime"
+        android:text="@string/salary" />
 
     <RadioGroup
+        android:id="@+id/radioGroupSalary"
         style="@style/DialogRadioGroupTheme"
         android:layout_below="@id/textViewSalary"
-        android:weightSum="2.2"
-        android:id="@+id/radioGroupSalary">
-        <LinearLayout
-            style="@style/DialogLinearLayoutTheme">
+        android:weightSum="2.2">
+
+        <LinearLayout style="@style/DialogLinearLayoutTheme">
+
             <RadioButton
+                android:id="@+id/radioButtonSalaryAny"
                 style="@style/DialogRadioButtonTheme"
                 android:text="@string/any" />
 
             <RadioButton
+                android:id="@+id/radioButtonFiveMore"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/five_thousand"/>
+                android:text="@string/five_thousand" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/DialogLinearLayoutTheme">
+
+        <LinearLayout style="@style/DialogLinearLayoutTheme">
+
             <RadioButton
+                android:id="@+id/radioButtonTenMore"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/ten_thousand"/>
+                android:text="@string/ten_thousand" />
+
             <RadioButton
+                android:id="@+id/radioButtonThirtyMore"
                 style="@style/DialogRadioButtonTheme"
-                android:text="@string/thirty_thousand"/>
+                android:text="@string/thirty_thousand" />
         </LinearLayout>
     </RadioGroup>
 
@@ -76,11 +105,12 @@
 
         <Button
             android:id="@+id/buttonReset"
-            android:text="@string/reset"
-            style="@style/DialogButtonTheme" />
+            style="@style/DialogButtonTheme"
+            android:text="@string/reset" />
+
         <Button
             android:id="@+id/buttonSearch"
-            android:text="@string/search"
-            style="@style/DialogButtonTheme"/>
+            style="@style/DialogButtonTheme"
+            android:text="@string/search" />
     </LinearLayout>
 </RelativeLayout>

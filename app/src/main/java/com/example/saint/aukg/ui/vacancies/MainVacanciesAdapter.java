@@ -53,7 +53,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewProfession, textViewDate, textViewBody, textViewSalary;
-        private CheckBox checkBoxFavorite;
+        private CheckBox checkBoxElected;
         private RelativeLayout relativeWatched;
 
         public ViewHolder(View view) {
@@ -62,7 +62,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
             textViewDate = view.findViewById(R.id.textViewDate);
             textViewBody = view.findViewById(R.id.textViewBody);
             textViewSalary = view.findViewById(R.id.textViewSalary);
-            checkBoxFavorite = view.findViewById(R.id.checkBoxFavorite);
+            checkBoxElected = view.findViewById(R.id.checkBoxElected);
             relativeWatched = view.findViewById(R.id.relativeWatched);
         }
     }

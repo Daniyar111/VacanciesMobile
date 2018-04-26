@@ -10,14 +10,38 @@
     </style>
 
     <style name="SplashScreenTextTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">22sp</item>
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="SplashScreenRelativeLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="SplashScreenLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:paddingBottom">@dimen/padding_forty</item>
+    </style>
+
+    <style name="SplashScreenImageLogoTheme">
+        <item name="android:layout_width">140sp</item>
+        <item name="android:layout_height">140sp</item>
+        <item name="android:src">@drawable/logo</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginBottom">@dimen/margin_ten</item>
+    </style>
+
     <style name="DialogTextTheme">
         <item name="android:textSize">20sp</item>
-        <item name="android:padding">@dimen/padding_dialog</item>
+        <item name="android:padding">@dimen/padding_ten</item>
         <item name="android:color">@color/colorDarkGrey</item>
         <item name="android:background">@color/colorLightGrey</item>
         <item name="android:layout_width">match_parent</item>
@@ -28,7 +52,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:padding">@dimen/padding_dialog</item>
+        <item name="android:padding">@dimen/padding_ten</item>
     </style>
 
     <style name="DialogLinearLayoutTheme">
@@ -36,7 +60,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">@dimen/padding_left_radio_group</item>
+        <item name="android:paddingLeft">@dimen/padding_ten</item>
     </style>
 
     <style name="DialogLinearLayoutButtonTheme">
@@ -67,12 +91,138 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="DetailsHorizontalLinearLayoutTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="DetailsButtonLinearLayoutTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">2</item>
+    </style>
+    
+    <style name="DetailsButtonTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_layout</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">@dimen/padding_ten</item>
+    </style>
+
+    <style name="DetailsButtonTextViewTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="ToolbarTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/colorPurpleLight</item>
     </style>
 
+    <style name="VacanciesLinearLayoutTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">3</item>
+        <item name="android:background">@drawable/border_bottom</item>
+    </style>
 
+    <style name="VacanciesTextFontBoldTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorPurple</item>
+    </style>
 
+    <style name="VacanciesTextFontLightTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="RelativeWrapTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="VacanciesFrameImageTheme">
+        <item name="android:layout_width">20sp</item>
+        <item name="android:layout_height">20sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/margin_ten</item>
+    </style>
+
+    <style name="VacanciesCheckBoxTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/checkbox_star</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_margin">@dimen/margin_five</item>
+    </style>
+
+    <style name="VacanciesTextWatchedTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    
+    <style name="VacanciesTextDateTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="VacanciesTextSiteTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/border_full</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginTop">@dimen/margin_five</item>
+    </style>
+
+    <style name="VacanciesTextBodyTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_ten</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="VacanciesCallButtonTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_call</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">@dimen/padding_eight</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="VacanciesCallImageTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ic_phone_black_24dp</item>
+    </style>
+
+    <style name="VacanciesTextCallTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/call</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

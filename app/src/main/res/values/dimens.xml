@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--Splash Screen-->
-    <dimen name="padding_bottom">40sp</dimen>
-    <dimen name="margin_image_bottom">10sp</dimen>
-    <dimen name="padding_dialog">10sp</dimen>
-    <dimen name="padding_left_radio_group">10sp</dimen>
+    <!--Padding-->
+    <dimen name="padding_eight">8sp</dimen>
+    <dimen name="padding_ten">10sp</dimen>
+    <dimen name="padding_fifteen">15sp</dimen>
+    <dimen name="padding_forty">40sp</dimen>
+
+    <!--Margin-->
+    <dimen name="margin_five">5sp</dimen>
+    <dimen name="margin_ten">10sp</dimen>
+    <dimen name="margin_fifteen">15sp</dimen>
 
 </resources>

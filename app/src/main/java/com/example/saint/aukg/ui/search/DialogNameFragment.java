@@ -47,6 +47,19 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
         buttonReset = view.findViewById(R.id.buttonReset);
         buttonSearch = view.findViewById(R.id.buttonSearch);
 
+        radioButtonRegimeAny.setChecked(true);
+        radioButtonSalaryAny.setChecked(true);
+
+        radioButtonRegimeAny.setOnClickListener(this);
+        radioButtonFull.setOnClickListener(this);
+        radioButtonFlexible.setOnClickListener(this);
+        radioButtonRemotely.setOnClickListener(this);
+        radioButtonNight.setOnClickListener(this);
+        radioButtonSalaryAny.setOnClickListener(this);
+        radioButtonFiveMore.setOnClickListener(this);
+        radioButtonTenMore.setOnClickListener(this);
+        radioButtonThirtyMore.setOnClickListener(this);
+
         buttonReset.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
 
@@ -57,8 +70,67 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
 
         switch (v.getId()){
+            case R.id.radioButtonRegimeAny:
+                radioButtonRegimeAny.setChecked(true);
+                radioButtonFull.setChecked(false);
+                radioButtonFlexible.setChecked(false);
+                radioButtonRemotely.setChecked(false);
+                radioButtonNight.setChecked(false);
+                break;
+            case R.id.radioButtonFull:
+                radioButtonRegimeAny.setChecked(false);
+                radioButtonFull.setChecked(true);
+                radioButtonFlexible.setChecked(false);
+                radioButtonRemotely.setChecked(false);
+                radioButtonNight.setChecked(false);
+                break;
+            case R.id.radioButtonFlexible:
+                radioButtonRegimeAny.setChecked(false);
+                radioButtonFull.setChecked(false);
+                radioButtonFlexible.setChecked(true);
+                radioButtonRemotely.setChecked(false);
+                radioButtonNight.setChecked(false);
+                break;
+            case R.id.radioButtonRemotely:
+                radioButtonRegimeAny.setChecked(false);
+                radioButtonFull.setChecked(false);
+                radioButtonFlexible.setChecked(false);
+                radioButtonRemotely.setChecked(true);
+                radioButtonNight.setChecked(false);
+                break;
+            case R.id.radioButtonNight:
+                radioButtonRegimeAny.setChecked(false);
+                radioButtonFull.setChecked(false);
+                radioButtonFlexible.setChecked(false);
+                radioButtonRemotely.setChecked(false);
+                radioButtonNight.setChecked(true);
+                break;
+            case R.id.radioButtonSalaryAny:
+                radioButtonSalaryAny.setChecked(true);
+                radioButtonFiveMore.setChecked(false);
+                radioButtonTenMore.setChecked(false);
+                radioButtonThirtyMore.setChecked(false);
+                break;
+            case R.id.radioButtonFiveMore:
+                radioButtonSalaryAny.setChecked(false);
+                radioButtonFiveMore.setChecked(true);
+                radioButtonTenMore.setChecked(false);
+                radioButtonThirtyMore.setChecked(false);
+                break;
+            case R.id.radioButtonTenMore:
+                radioButtonSalaryAny.setChecked(false);
+                radioButtonFiveMore.setChecked(false);
+                radioButtonTenMore.setChecked(true);
+                radioButtonThirtyMore.setChecked(false);
+                break;
+            case R.id.radioButtonThirtyMore:
+                radioButtonSalaryAny.setChecked(false);
+                radioButtonFiveMore.setChecked(false);
+                radioButtonTenMore.setChecked(false);
+                radioButtonThirtyMore.setChecked(true);
+                break;
             case R.id.buttonReset:
-                dismiss();
+
                 break;
             case R.id.buttonSearch:
 

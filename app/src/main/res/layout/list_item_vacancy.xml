@@ -1,124 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8sp">
+    style="@style/VerticalLinearLayoutTheme"
+    android:padding="@dimen/padding_eight">
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardViewVacancy">
+        android:id="@+id/cardViewVacancy"
+        style="@style/RelativeWrapTheme">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            style="@style/VerticalLinearLayoutTheme"
             android:layout_margin="10sp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="@drawable/border_bottom">
+            <LinearLayout style="@style/VacanciesLinearLayoutTheme">
 
                 <com.example.saint.aukg.ui.fonts.TextFontBold
                     android:id="@+id/textViewProfession"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/VacanciesTextFontBoldTheme"
                     android:text="Header"
-                    android:textSize="22sp"
-                    android:textColor="@color/colorPurple"
                     android:layout_weight="3"/>
 
                 <com.example.saint.aukg.ui.fonts.TextFontLight
                     android:id="@+id/textViewDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11:58 22 Apr 2018"
-                    android:textSize="16sp"/>
+                    style="@style/VacanciesTextFontLightTheme"
+                    android:text="11:58 22 Apr 2018" />
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp">
+                style="@style/RelativeWrapTheme"
+                android:layout_marginTop="@dimen/margin_ten">
 
                 <FrameLayout
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
                     android:id="@+id/imageProfile"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10sp"
-                    android:background="@drawable/ic_profile_name"/>
+                    style="@style/VacanciesFrameImageTheme"
+                    android:background="@drawable/ic_profile_name" />
 
                 <TextView
-                    android:layout_toRightOf="@id/imageProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
                     android:id="@+id/textViewBody"
-                    android:text="fndslfhslhjsdkhsdjlfhkdsllllllllllllllllllllllllllllllllldslbfskjfdskbfkjsdbfkjdsbfksjjbbkjfdsb"/>
+                    style="@style/VacanciesTextFontLightTheme"
+                    android:layout_toEndOf="@id/imageProfile"
+                    android:layout_toRightOf="@id/imageProfile"
+                    android:text="fndslfhslhjsdkhsdjlfhkdsllllllllllllllllllllllllllllllllldslbfskjfdskbfkjsdbfkjdsbfksjjbbkjfdsb" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <RelativeLayout style="@style/RelativeWrapTheme">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15sp"
-                    android:id="@+id/relativeSalary">
+                    android:id="@+id/relativeSalary"
+                    style="@style/RelativeWrapTheme"
+                    android:layout_marginTop="@dimen/margin_fifteen">
 
                     <FrameLayout
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
                         android:id="@+id/imageSalary"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10sp"
-                        android:background="@drawable/ic_salary"/>
+                        style="@style/VacanciesFrameImageTheme"
+                        android:background="@drawable/ic_salary" />
 
                     <TextView
-                        android:layout_toRightOf="@id/imageSalary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/textViewSalary"
-                        android:textSize="15sp"
-                        android:text="fhdskjfhdkshfksdjhfskhskfs"/>
+                        style="@style/VacanciesTextFontLightTheme"
+                        android:layout_toEndOf="@id/imageSalary"
+                        android:layout_toRightOf="@id/imageSalary"
+                        android:text="fhdskjfhdkshfksdjhfskhskfs" />
                 </RelativeLayout>
+
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/checkBoxFavorite"
-                    android:button="@drawable/checkbox_star"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5sp"/>
+                    android:id="@+id/checkBoxElected"
+                    style="@style/VacanciesCheckBoxTheme" />
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/relativeWatched"
-                android:visibility="gone">
+                style="@style/RelativeWrapTheme"
+                android:visibility="visible">
 
                 <FrameLayout
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
                     android:id="@+id/imageWatched"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10sp"
-                    android:background="@drawable/ic_status_watched"/>
+                    style="@style/VacanciesFrameImageTheme"
+                    android:background="@drawable/ic_status_watched" />
 
                 <TextView
-                    android:layout_toRightOf="@id/imageWatched"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/textViewWatched"
-                    android:textSize="13sp"
-                    android:text="@string/watched"/>
+                    style="@style/VacanciesTextWatchedTheme"
+                    android:layout_toEndOf="@id/imageWatched"
+                    android:layout_toRightOf="@id/imageWatched"
+                    android:text="@string/watched" />
             </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

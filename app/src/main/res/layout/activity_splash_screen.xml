@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/splash_screen_background"
+    style="@style/SplashScreenRelativeLayout"
     tools:context="com.example.saint.aukg.ui.splash_screen.SplashScreen">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:paddingBottom="@dimen/padding_bottom">
+    <LinearLayout style="@style/SplashScreenLinearLayout">
 
-        <ImageView
-            android:layout_width="140sp"
-            android:layout_height="140sp"
-            android:src="@drawable/logo"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/margin_image_bottom"/>
+        <ImageView style="@style/SplashScreenImageLogoTheme" />
 
         <com.example.saint.aukg.ui.fonts.TextFontLight
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/aukg"
-            android:theme="@style/SplashScreenTextTheme"/>
+            style="@style/SplashScreenTextTheme"
+            android:text="@string/aukg" />
 
         <com.example.saint.aukg.ui.fonts.TextFontLight
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vacancy"
-            android:theme="@style/SplashScreenTextTheme"/>
+            style="@style/SplashScreenTextTheme"
+            android:text="@string/vacancy" />
 
     </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.Holo.Light.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

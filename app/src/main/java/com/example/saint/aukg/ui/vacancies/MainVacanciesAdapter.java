@@ -5,11 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.models.VacancyModel;
+import com.example.saint.aukg.ui.fonts.TextFontLight;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by saint on 17.04.2018.
@@ -17,9 +22,9 @@ import java.util.ArrayList;
 
 public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdapter.ViewHolder> {
 
-    public ArrayList<String> arrayList;
+    public ArrayList<VacancyModel> arrayList;
 
-    public MainVacanciesAdapter(ArrayList<String> arrayList){
+    public MainVacanciesAdapter(ArrayList<VacancyModel> arrayList){
         this.arrayList = arrayList;
     }
 
@@ -33,7 +38,25 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textViewCard.setText(arrayList.get(position));
+
+        VacancyModel vacancyModel = arrayList.get(position);
+
+        if(vacancyModel.getProfession().equals("Не определено")){
+            holder.textViewProfession.setText(vacancyModel.getHeader());
+        }
+        else{
+            holder.textViewProfession.setText(vacancyModel.getProfession());
+        }
+
+        holder.textViewDate.setText(vacancyModel.getData());
+        holder.textViewHeader.setText(vacancyModel.getHeader());
+
+        if(vacancyModel.getSalary().equals("")){
+            holder.textViewSalary.setText(R.string.treaty);
+        }
+        else {
+            holder.textViewSalary.setText(vacancyModel.getSalary());
+        }
     }
 
     @Override
@@ -42,11 +65,20 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewCard;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textViewProfession, textViewDate, textViewHeader, textViewSalary;
+        private CheckBox checkBoxElected;
+        private RelativeLayout relativeWatched;
+
         public ViewHolder(View view) {
             super(view);
-//            textViewCard = view.findViewById(R.id.textViewCard);
+            textViewProfession = view.findViewById(R.id.textViewProfession);
+            textViewDate = view.findViewById(R.id.textViewDate);
+            textViewHeader = view.findViewById(R.id.textViewHeader);
+            textViewSalary = view.findViewById(R.id.textViewSalary);
+            checkBoxElected = view.findViewById(R.id.checkBoxElected);
+            relativeWatched = view.findViewById(R.id.relativeWatched);
         }
     }
 }

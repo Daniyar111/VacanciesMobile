@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.models.VacancyModel;
+import com.example.saint.aukg.ui.fonts.TextFontLight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +40,23 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         VacancyModel vacancyModel = arrayList.get(position);
-        holder.textViewProfession.setText(vacancyModel.getProfession());
+
+        if(vacancyModel.getProfession().equals("Не определено")){
+            holder.textViewProfession.setText(vacancyModel.getHeader());
+        }
+        else{
+            holder.textViewProfession.setText(vacancyModel.getProfession());
+        }
+
         holder.textViewDate.setText(vacancyModel.getData());
-        holder.textViewBody.setText(vacancyModel.getBody());
-        holder.textViewSalary.setText(vacancyModel.getSalary());
+        holder.textViewHeader.setText(vacancyModel.getHeader());
+
+        if(vacancyModel.getSalary().equals("")){
+            holder.textViewSalary.setText(R.string.treaty);
+        }
+        else {
+            holder.textViewSalary.setText(vacancyModel.getSalary());
+        }
     }
 
     @Override
@@ -53,7 +67,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewProfession, textViewDate, textViewBody, textViewSalary;
+        private TextView textViewProfession, textViewDate, textViewHeader, textViewSalary;
         private CheckBox checkBoxElected;
         private RelativeLayout relativeWatched;
 
@@ -61,7 +75,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
             super(view);
             textViewProfession = view.findViewById(R.id.textViewProfession);
             textViewDate = view.findViewById(R.id.textViewDate);
-            textViewBody = view.findViewById(R.id.textViewBody);
+            textViewHeader = view.findViewById(R.id.textViewHeader);
             textViewSalary = view.findViewById(R.id.textViewSalary);
             checkBoxElected = view.findViewById(R.id.checkBoxElected);
             relativeWatched = view.findViewById(R.id.relativeWatched);

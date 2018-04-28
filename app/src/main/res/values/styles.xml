@@ -134,21 +134,43 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:weightSum">3</item>
         <item name="android:background">@drawable/border_bottom</item>
     </style>
 
     <style name="VacanciesTextFontBoldTheme">
+        <item name="android:layout_width">230sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/colorPurpleLight</item>
+    </style>
+
+    <style name="VacanciesTextFontDateTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/colorPurple</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginTop">@dimen/margin_five</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="VacanciesTextFontLightTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="VacanciesTextFontSalaryTheme">
+        <item name="android:layout_width">250sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="VacanciesTextFontHeaderTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:maxLines">2</item>
     </style>
 
     <style name="RelativeWrapTheme">

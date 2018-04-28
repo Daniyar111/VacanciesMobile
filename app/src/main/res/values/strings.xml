@@ -3,7 +3,7 @@
 
     <string name="about_us">О нас</string>
     <string name="any">Любой</string>
-    <string name="aukg">AU.KG</string>
+    <string name="aukg">AU.kg</string>
     <string name="cancel">Отмена</string>
     <string name="call">Позвонить</string>
     <string name="enter_for_searching">Введите для поиска…</string>
@@ -24,6 +24,7 @@
     <string name="suitable">Подходящие</string>
     <string name="ten_thousand">10 000 +</string>
     <string name="thirty_thousand">30 000 +</string>
+    <string name="treaty">Договорная</string>
     <string name="vacancy">Все вакансии Кыргызстана</string>
     <string name="vac_per_day">Вакансии за сутки</string>
     <string name="version">Версия: </string>

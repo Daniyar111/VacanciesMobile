@@ -13,17 +13,16 @@
             style="@style/VerticalLinearLayoutTheme"
             android:layout_margin="10sp">
 
-            <LinearLayout style="@style/VacanciesLinearLayoutTheme">
+            <RelativeLayout style="@style/VacanciesLinearLayoutTheme">
 
                 <com.example.saint.aukg.ui.fonts.TextFontBold
                     android:id="@+id/textViewProfession"
-                    style="@style/VacanciesTextFontBoldTheme"
-                    android:layout_weight="3"/>
+                    style="@style/VacanciesTextFontBoldTheme" />
 
                 <com.example.saint.aukg.ui.fonts.TextFontLight
                     android:id="@+id/textViewDate"
-                    style="@style/VacanciesTextFontLightTheme" />
-            </LinearLayout>
+                    style="@style/VacanciesTextFontDateTheme"/>
+            </RelativeLayout>
 
             <RelativeLayout
                 style="@style/RelativeWrapTheme"
@@ -34,9 +33,9 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_profile_name" />
 
-                <TextView
-                    android:id="@+id/textViewBody"
-                    style="@style/VacanciesTextFontLightTheme"
+                <com.example.saint.aukg.ui.fonts.TextFontLight
+                    android:id="@+id/textViewHeader"
+                    style="@style/VacanciesTextFontHeaderTheme"
                     android:layout_toEndOf="@id/imageProfile"
                     android:layout_toRightOf="@id/imageProfile"/>
             </RelativeLayout>
@@ -53,9 +52,9 @@
                         style="@style/VacanciesFrameImageTheme"
                         android:background="@drawable/ic_salary" />
 
-                    <TextView
+                    <com.example.saint.aukg.ui.fonts.TextFontLight
                         android:id="@+id/textViewSalary"
-                        style="@style/VacanciesTextFontLightTheme"
+                        style="@style/VacanciesTextFontSalaryTheme"
                         android:layout_toEndOf="@id/imageSalary"
                         android:layout_toRightOf="@id/imageSalary" />
                 </RelativeLayout>
@@ -75,7 +74,7 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_status_watched" />
 
-                <TextView
+                <com.example.saint.aukg.ui.fonts.TextFontLight
                     android:id="@+id/textViewWatched"
                     style="@style/VacanciesTextWatchedTheme"
                     android:layout_toEndOf="@id/imageWatched"

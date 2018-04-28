@@ -130,7 +130,15 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
                 radioButtonThirtyMore.setChecked(true);
                 break;
             case R.id.buttonReset:
-
+                radioButtonRegimeAny.setChecked(true);
+                radioButtonFull.setChecked(false);
+                radioButtonFlexible.setChecked(false);
+                radioButtonRemotely.setChecked(false);
+                radioButtonNight.setChecked(false);
+                radioButtonSalaryAny.setChecked(true);
+                radioButtonFiveMore.setChecked(false);
+                radioButtonTenMore.setChecked(false);
+                radioButtonThirtyMore.setChecked(false);
                 break;
             case R.id.buttonSearch:
 

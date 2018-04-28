@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/VerticalLinearLayoutTheme"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="@dimen/padding_eight">
 
     <android.support.v7.widget.CardView
@@ -16,13 +18,11 @@
                 <com.example.saint.aukg.ui.fonts.TextFontBold
                     android:id="@+id/textViewProfession"
                     style="@style/VacanciesTextFontBoldTheme"
-                    android:text="Header"
                     android:layout_weight="3"/>
 
                 <com.example.saint.aukg.ui.fonts.TextFontLight
                     android:id="@+id/textViewDate"
-                    style="@style/VacanciesTextFontLightTheme"
-                    android:text="11:58 22 Apr 2018" />
+                    style="@style/VacanciesTextFontLightTheme" />
             </LinearLayout>
 
             <RelativeLayout
@@ -38,8 +38,7 @@
                     android:id="@+id/textViewBody"
                     style="@style/VacanciesTextFontLightTheme"
                     android:layout_toEndOf="@id/imageProfile"
-                    android:layout_toRightOf="@id/imageProfile"
-                    android:text="fndslfhslhjsdkhsdjlfhkdsllllllllllllllllllllllllllllllllldslbfskjfdskbfkjsdbfkjdsbfksjjbbkjfdsb" />
+                    android:layout_toRightOf="@id/imageProfile"/>
             </RelativeLayout>
 
             <RelativeLayout style="@style/RelativeWrapTheme">
@@ -58,8 +57,7 @@
                         android:id="@+id/textViewSalary"
                         style="@style/VacanciesTextFontLightTheme"
                         android:layout_toEndOf="@id/imageSalary"
-                        android:layout_toRightOf="@id/imageSalary"
-                        android:text="fhdskjfhdkshfksdjhfskhskfs" />
+                        android:layout_toRightOf="@id/imageSalary" />
                 </RelativeLayout>
 
                 <CheckBox
@@ -70,7 +68,7 @@
             <RelativeLayout
                 android:id="@+id/relativeWatched"
                 style="@style/RelativeWrapTheme"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <FrameLayout
                     android:id="@+id/imageWatched"

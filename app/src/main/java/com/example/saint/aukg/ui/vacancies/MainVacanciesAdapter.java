@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.models.VacancyModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,10 +21,10 @@ import java.util.List;
 
 public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdapter.ViewHolder> {
 
-    public List<VacancyModel> list;
+    public ArrayList<VacancyModel> arrayList;
 
-    public MainVacanciesAdapter(List<VacancyModel> list){
-        this.list = list;
+    public MainVacanciesAdapter(ArrayList<VacancyModel> arrayList){
+        this.arrayList = arrayList;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        VacancyModel vacancyModel = list.get(position);
+        VacancyModel vacancyModel = arrayList.get(position);
         holder.textViewProfession.setText(vacancyModel.getProfession());
         holder.textViewDate.setText(vacancyModel.getData());
         holder.textViewBody.setText(vacancyModel.getBody());
@@ -46,7 +47,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return arrayList.size();
     }
 
 

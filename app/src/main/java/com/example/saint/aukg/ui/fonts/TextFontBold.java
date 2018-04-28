@@ -30,7 +30,7 @@ public class TextFontBold extends AppCompatTextView{
 
         if(!isInEditMode()){
 
-            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Black.ttf");
+            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Bold.ttf");
             setTypeface(typeface);
         }
     }

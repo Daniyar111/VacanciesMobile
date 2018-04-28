@@ -3,6 +3,7 @@ package com.example.saint.aukg;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.saint.aukg.data.NetworkBuilder;
 import com.example.saint.aukg.data.RetrofitService;
 
 public class AuApplication extends Application{
@@ -11,6 +12,7 @@ public class AuApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        service = NetworkBuilder.initService();
     }
 
     public static AuApplication get(Context context){

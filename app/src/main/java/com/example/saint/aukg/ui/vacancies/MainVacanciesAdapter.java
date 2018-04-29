@@ -10,11 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.models.VacancyModel;
-import com.example.saint.aukg.ui.fonts.TextFontLight;
+import com.example.saint.aukg.data.models.VacancyModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by saint on 17.04.2018.

@@ -11,11 +11,10 @@ import android.widget.Toast;
 import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.RetrofitService;
-import com.example.saint.aukg.models.VacancyModel;
+import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

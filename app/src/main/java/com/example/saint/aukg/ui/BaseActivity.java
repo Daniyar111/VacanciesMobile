@@ -6,8 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.saint.aukg.BuildConfig;
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.models.TabPagerItem;
+import com.example.saint.aukg.data.models.TabPagerItem;
 import com.example.saint.aukg.ui.suitable.SuitableFragment;
 import com.example.saint.aukg.ui.vacancies.VacanciesFragment;
 import com.example.saint.aukg.ui.main.ArrayPagerAdapter;
@@ -52,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
         profileDrawerItem = new ProfileDrawerItem()
                 .withName(R.string.vacancy)
-                .withEmail(R.string.version)
+                .withEmail(String.format(getResources().getString(R.string.version), BuildConfig.VERSION_NAME))
                 .withIcon(R.drawable.logo);
 
         header = new AccountHeaderBuilder()

@@ -1,4 +1,4 @@
-package com.example.saint.aukg.models;
+package com.example.saint.aukg.data.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

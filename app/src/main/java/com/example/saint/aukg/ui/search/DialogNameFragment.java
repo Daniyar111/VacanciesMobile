@@ -1,6 +1,7 @@
 package com.example.saint.aukg.ui.search;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -15,15 +16,17 @@ import android.widget.TextView;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.ui.BaseFragment;
 
-public class DialogNameFragment extends DialogFragment implements View.OnClickListener {
+public class DialogNameFragment extends DialogFragment implements View.OnClickListener{
 
-    private RadioGroup radioGroupRegime, radioGroupSalary;
+    private RadioGroup radioGroupRegimeFirst, radioGroupRegimeSecond, radioGroupSalaryFirst, radioGroupSalarySecond;
     private RadioButton radioButtonRegimeAny, radioButtonFull, radioButtonFlexible, radioButtonRemotely, radioButtonNight, radioButtonSalaryAny, radioButtonFiveMore, radioButtonTenMore, radioButtonThirtyMore;
     private Button buttonReset, buttonSearch;
+    private boolean flagRegime = true;
+    private boolean flagSalary = true;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_dialog, container, false);
 
@@ -31,8 +34,10 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
 
-        radioGroupRegime = view.findViewById(R.id.radioGroupRegime);
-        radioGroupSalary = view.findViewById(R.id.radioGroupSalary);
+        radioGroupRegimeFirst = view.findViewById(R.id.radioGroupRegimeFirst);
+        radioGroupRegimeSecond = view.findViewById(R.id.radioGroupRegimeSecond);
+        radioGroupSalaryFirst = view.findViewById(R.id.radioGroupSalaryFirst);
+        radioGroupSalarySecond = view.findViewById(R.id.radioGroupSalarySecond);
 
         radioButtonRegimeAny = view.findViewById(R.id.radioButtonRegimeAny);
         radioButtonFull = view.findViewById(R.id.radioButtonFull);
@@ -50,15 +55,10 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
         radioButtonRegimeAny.setChecked(true);
         radioButtonSalaryAny.setChecked(true);
 
-        radioButtonRegimeAny.setOnClickListener(this);
-        radioButtonFull.setOnClickListener(this);
-        radioButtonFlexible.setOnClickListener(this);
-        radioButtonRemotely.setOnClickListener(this);
-        radioButtonNight.setOnClickListener(this);
-        radioButtonSalaryAny.setOnClickListener(this);
-        radioButtonFiveMore.setOnClickListener(this);
-        radioButtonTenMore.setOnClickListener(this);
-        radioButtonThirtyMore.setOnClickListener(this);
+        radioGroupRegimeFirst.setOnCheckedChangeListener(radioGroupRegimeFirstListener);
+        radioGroupRegimeSecond.setOnCheckedChangeListener(radioGroupRegimeSecondListener);
+        radioGroupSalaryFirst.setOnCheckedChangeListener(radioGroupSalaryFirstListener);
+        radioGroupSalarySecond.setOnCheckedChangeListener(radioGroupSalarySecondListener);
 
         buttonReset.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
@@ -70,80 +70,76 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.radioButtonRegimeAny:
-                radioButtonRegimeAny.setChecked(true);
-                radioButtonFull.setChecked(false);
-                radioButtonFlexible.setChecked(false);
-                radioButtonRemotely.setChecked(false);
-                radioButtonNight.setChecked(false);
-                break;
-            case R.id.radioButtonFull:
-                radioButtonRegimeAny.setChecked(false);
-                radioButtonFull.setChecked(true);
-                radioButtonFlexible.setChecked(false);
-                radioButtonRemotely.setChecked(false);
-                radioButtonNight.setChecked(false);
-                break;
-            case R.id.radioButtonFlexible:
-                radioButtonRegimeAny.setChecked(false);
-                radioButtonFull.setChecked(false);
-                radioButtonFlexible.setChecked(true);
-                radioButtonRemotely.setChecked(false);
-                radioButtonNight.setChecked(false);
-                break;
-            case R.id.radioButtonRemotely:
-                radioButtonRegimeAny.setChecked(false);
-                radioButtonFull.setChecked(false);
-                radioButtonFlexible.setChecked(false);
-                radioButtonRemotely.setChecked(true);
-                radioButtonNight.setChecked(false);
-                break;
-            case R.id.radioButtonNight:
-                radioButtonRegimeAny.setChecked(false);
-                radioButtonFull.setChecked(false);
-                radioButtonFlexible.setChecked(false);
-                radioButtonRemotely.setChecked(false);
-                radioButtonNight.setChecked(true);
-                break;
-            case R.id.radioButtonSalaryAny:
-                radioButtonSalaryAny.setChecked(true);
-                radioButtonFiveMore.setChecked(false);
-                radioButtonTenMore.setChecked(false);
-                radioButtonThirtyMore.setChecked(false);
-                break;
-            case R.id.radioButtonFiveMore:
-                radioButtonSalaryAny.setChecked(false);
-                radioButtonFiveMore.setChecked(true);
-                radioButtonTenMore.setChecked(false);
-                radioButtonThirtyMore.setChecked(false);
-                break;
-            case R.id.radioButtonTenMore:
-                radioButtonSalaryAny.setChecked(false);
-                radioButtonFiveMore.setChecked(false);
-                radioButtonTenMore.setChecked(true);
-                radioButtonThirtyMore.setChecked(false);
-                break;
-            case R.id.radioButtonThirtyMore:
-                radioButtonSalaryAny.setChecked(false);
-                radioButtonFiveMore.setChecked(false);
-                radioButtonTenMore.setChecked(false);
-                radioButtonThirtyMore.setChecked(true);
-                break;
             case R.id.buttonReset:
+
+                radioGroupRegimeFirst.clearCheck();
+                radioGroupRegimeSecond.clearCheck();
+                radioGroupSalaryFirst.clearCheck();
+                radioGroupSalarySecond.clearCheck();
                 radioButtonRegimeAny.setChecked(true);
-                radioButtonFull.setChecked(false);
-                radioButtonFlexible.setChecked(false);
-                radioButtonRemotely.setChecked(false);
-                radioButtonNight.setChecked(false);
                 radioButtonSalaryAny.setChecked(true);
-                radioButtonFiveMore.setChecked(false);
-                radioButtonTenMore.setChecked(false);
-                radioButtonThirtyMore.setChecked(false);
                 break;
+
             case R.id.buttonSearch:
 
                 break;
         }
 
     }
+
+    RadioGroup.OnCheckedChangeListener radioGroupRegimeFirstListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if((group.getCheckedRadioButtonId() != -1) && flagRegime){
+                flagRegime = false;
+                radioGroupRegimeSecond.clearCheck();
+            }
+            else{
+                flagRegime = true;
+            }
+        }
+    };
+
+    RadioGroup.OnCheckedChangeListener radioGroupRegimeSecondListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if((group.getCheckedRadioButtonId() != -1) && flagRegime){
+                flagRegime = false;
+                radioGroupRegimeFirst.clearCheck();
+            }
+            else{
+                flagRegime = true;
+            }
+        }
+    };
+
+    RadioGroup.OnCheckedChangeListener radioGroupSalaryFirstListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if((group.getCheckedRadioButtonId() != -1) && flagSalary){
+                flagSalary = false;
+                radioGroupSalarySecond.clearCheck();
+            }
+            else {
+                flagSalary = true;
+            }
+        }
+    };
+
+    RadioGroup.OnCheckedChangeListener radioGroupSalarySecondListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if((group.getCheckedRadioButtonId() != -1) && flagSalary){
+                flagSalary = false;
+                radioGroupSalaryFirst.clearCheck();
+            }
+            else {
+                flagSalary = true;
+            }
+        }
+    };
 }

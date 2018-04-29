@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.saint.aukg.models.TabPagerItem;
+import com.example.saint.aukg.data.models.TabPagerItem;
 
 import java.util.ArrayList;
 

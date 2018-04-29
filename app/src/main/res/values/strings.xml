@@ -27,6 +27,6 @@
     <string name="treaty">Договорная</string>
     <string name="vacancy">Все вакансии Кыргызстана</string>
     <string name="vac_per_day">Вакансии за сутки</string>
-    <string name="version">Версия: </string>
+    <string name="version">Версия: %s</string>
     <string name="watched">Просмотрено</string>
 </resources>

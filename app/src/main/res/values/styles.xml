@@ -97,6 +97,13 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="ScrollViewTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">@dimen/margin_forty_five</item>
+    </style>
+
     <style name="DetailsHorizontalLinearLayoutTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -134,6 +141,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/colorPurpleLight</item>
+        <item name="android:theme">@style/ToolbarColoredBackArrow</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrow" parent="AppTheme">
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
     <style name="VacanciesLinearLayoutTheme">
@@ -148,6 +160,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
         <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/colorPurpleLight</item>
+    </style>
+
+    <style name="DetailsTextFontBoldTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorPurpleLight</item>
     </style>
 

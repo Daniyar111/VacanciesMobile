@@ -13,16 +13,6 @@ public class MainActivity extends BaseActivity {
     private DialogNameFragment searchFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getViewLayout());
-
-        getToolbar();
-        getDrawer();
-        getTabLayout();
-    }
-
-    @Override
     protected int getViewLayout() {
         return R.layout.activity_main;
     }
@@ -30,6 +20,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getToolbarId() {
         return R.id.toolbar;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getViewLayout());
+
+        getToolbar(getResources().getString(R.string.aukg), false);
+        getDrawer();
+        getTabLayout();
     }
 
     @Override

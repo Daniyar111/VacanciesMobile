@@ -60,6 +60,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
                 .withActivity(this)
                 .withHeaderBackground(R.color.colorPurpleLight)
                 .addProfiles(profileDrawerItem)
+                .withSelectionListEnabledForSingleProfile(false)
                 .build();
 
         electedDrawerItem = new PrimaryDrawerItem()
@@ -83,13 +84,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
     }
 
-    protected void getToolbar(){
+    protected void getToolbar(String title, boolean back){
 
         toolbar = findViewById(getToolbarId());
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle(R.string.aukg);
+            getSupportActionBar().setTitle(title);
         }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(back);
     }
 
     protected void getTabLayout(){

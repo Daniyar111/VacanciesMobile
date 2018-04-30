@@ -10,7 +10,7 @@
 
         <RelativeLayout style="@style/RelativeWrapTheme">
 
-            <ScrollView style="@style/VerticalLinearLayoutTheme">
+            <ScrollView style="@style/ScrollViewTheme">
 
                 <LinearLayout
                     style="@style/VerticalLinearLayoutTheme"
@@ -18,8 +18,7 @@
 
                     <com.example.saint.aukg.ui.fonts.TextFontBold
                         android:id="@+id/textViewHeader"
-                        style="@style/VacanciesTextFontBoldTheme"
-                        android:text="Header" />
+                        style="@style/DetailsTextFontBoldTheme" />
 
                     <RelativeLayout
                         style="@style/RelativeWrapTheme"
@@ -30,17 +29,15 @@
                             style="@style/VacanciesFrameImageTheme"
                             android:background="@drawable/ic_profile_name" />
 
-                        <TextView
+                        <com.example.saint.aukg.ui.fonts.TextFontLight
                             android:id="@+id/textViewProfile"
                             style="@style/VacanciesTextFontLightTheme"
                             android:layout_toEndOf="@id/imageProfile"
-                            android:layout_toRightOf="@id/imageProfile"
-                            android:text="daniyar.changylov" />
+                            android:layout_toRightOf="@id/imageProfile" />
 
-                        <TextView
+                        <com.example.saint.aukg.ui.fonts.TextFontLight
                             android:id="@+id/textViewDate"
-                            style="@style/VacanciesTextDateTheme"
-                            android:text="12:53 22 Apr 2018" />
+                            style="@style/VacanciesTextDateTheme"/>
                     </RelativeLayout>
 
                     <RelativeLayout style="@style/RelativeWrapTheme">
@@ -55,18 +52,16 @@
                                 style="@style/VacanciesFrameImageTheme"
                                 android:background="@drawable/ic_salary" />
 
-                            <TextView
+                            <com.example.saint.aukg.ui.fonts.TextFontLight
                                 android:id="@+id/textViewSalary"
                                 style="@style/VacanciesTextFontLightTheme"
                                 android:layout_toEndOf="@id/imageSalary"
-                                android:layout_toRightOf="@id/imageSalary"
-                                android:text="fhdskjfhdks" />
+                                android:layout_toRightOf="@id/imageSalary" />
                         </RelativeLayout>
 
-                        <TextView
+                        <com.example.saint.aukg.ui.fonts.TextFontLight
                             android:id="@+id/textViewSiteAddress"
-                            style="@style/VacanciesTextSiteTheme"
-                            android:text="diesel.elcat.kg" />
+                            style="@style/VacanciesTextSiteTheme"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -83,12 +78,11 @@
                                 style="@style/VacanciesFrameImageTheme"
                                 android:background="@drawable/ic_telephone_number" />
 
-                            <TextView
+                            <com.example.saint.aukg.ui.fonts.TextFontLight
                                 android:id="@+id/textViewTelephone"
                                 style="@style/VacanciesTextFontLightTheme"
                                 android:layout_toEndOf="@id/imageCall"
-                                android:layout_toRightOf="@id/imageCall"
-                                android:text="fhdskjfhdkshfksdjhfskhskfs" />
+                                android:layout_toRightOf="@id/imageCall" />
                         </RelativeLayout>
 
                         <CheckBox
@@ -98,8 +92,7 @@
 
                     <com.example.saint.aukg.ui.fonts.TextFontLight
                         android:id="@+id/textViewBody"
-                        style="@style/VacanciesTextBodyTheme"
-                        android:text="gfskjgdkgfsdk  gfoshfs sfwo hfow hfweofwie fhwo hfo wfhwe ofhwfh wfh oweif hwoeifh owieh fioweh fowei hweo fhowie hffoew ifhw oeifh eiwoh ffow hfieow " />
+                        style="@style/VacanciesTextBodyTheme" />
 
                 </LinearLayout>
             </ScrollView>
@@ -108,9 +101,7 @@
                 android:id="@+id/buttonCall"
                 style="@style/VacanciesCallButtonTheme">
 
-                <FrameLayout
-                    android:id="@+id/imageCallButton"
-                    style="@style/VacanciesCallImageTheme" />
+                <FrameLayout style="@style/VacanciesCallImageTheme" />
 
                 <TextView style="@style/VacanciesTextCallTheme" />
             </RelativeLayout>

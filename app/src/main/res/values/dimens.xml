@@ -11,5 +11,6 @@
     <dimen name="margin_five">5sp</dimen>
     <dimen name="margin_ten">10sp</dimen>
     <dimen name="margin_fifteen">15sp</dimen>
+    <dimen name="margin_forty_five">45sp</dimen>
 
 </resources>

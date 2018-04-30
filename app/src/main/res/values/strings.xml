@@ -25,6 +25,7 @@
     <string name="ten_thousand">10 000 +</string>
     <string name="thirty_thousand">30 000 +</string>
     <string name="treaty">Договорная</string>
+    <string name="vacancies">Вакансии</string>
     <string name="vacancy">Все вакансии Кыргызстана</string>
     <string name="vac_per_day">Вакансии за сутки</string>
     <string name="version">Версия: %s</string>

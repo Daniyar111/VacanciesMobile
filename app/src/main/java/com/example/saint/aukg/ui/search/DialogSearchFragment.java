@@ -11,12 +11,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.example.saint.aukg.R;
-import com.example.saint.aukg.ui.BaseFragment;
 
-public class DialogNameFragment extends DialogFragment implements View.OnClickListener{
+public class DialogSearchFragment extends DialogFragment implements View.OnClickListener{
 
     private RadioGroup radioGroupRegimeFirst, radioGroupRegimeSecond, radioGroupSalaryFirst, radioGroupSalarySecond;
     private RadioButton radioButtonRegimeAny, radioButtonFull, radioButtonFlexible, radioButtonRemotely, radioButtonNight, radioButtonSalaryAny, radioButtonFiveMore, radioButtonTenMore, radioButtonThirtyMore;
@@ -28,7 +26,7 @@ public class DialogNameFragment extends DialogFragment implements View.OnClickLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_dialog, container, false);
+        View view = inflater.inflate(R.layout.dialog_fragment_search, container, false);
 
         if(getDialog().getWindow() != null){
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);

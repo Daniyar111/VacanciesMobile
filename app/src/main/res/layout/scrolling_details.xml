@@ -54,7 +54,7 @@
 
                             <com.example.saint.aukg.ui.fonts.TextFontLight
                                 android:id="@+id/textViewSalary"
-                                style="@style/VacanciesTextFontLightTheme"
+                                style="@style/VacanciesTextFontSalaryTheme"
                                 android:layout_toEndOf="@id/imageSalary"
                                 android:layout_toRightOf="@id/imageSalary" />
                         </RelativeLayout>
@@ -103,7 +103,7 @@
 
                 <FrameLayout style="@style/VacanciesCallImageTheme" />
 
-                <TextView style="@style/VacanciesTextCallTheme" />
+                <TextView style="@style/VacanciesTextCallTheme"/>
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

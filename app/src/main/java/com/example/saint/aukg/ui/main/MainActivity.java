@@ -6,11 +6,11 @@ import android.view.MenuItem;
 
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.ui.BaseActivity;
-import com.example.saint.aukg.ui.search.DialogNameFragment;
+import com.example.saint.aukg.ui.search.DialogSearchFragment;
 
 public class MainActivity extends BaseActivity {
 
-    private DialogNameFragment searchFragment;
+    private DialogSearchFragment searchFragment;
 
     @Override
     protected int getViewLayout() {
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        searchFragment = new DialogNameFragment();
+        searchFragment = new DialogSearchFragment();
         searchFragment.show(getSupportFragmentManager(), "fragment");
         return super.onOptionsItemSelected(item);
     }

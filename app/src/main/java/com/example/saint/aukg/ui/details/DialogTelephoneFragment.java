@@ -6,56 +6,59 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.ui.BaseDialogFragment;
 
 import java.util.ArrayList;
 
-public class DialogTelephoneFragment extends DialogFragment implements AdapterView.OnItemClickListener {
+public class DialogTelephoneFragment extends BaseDialogFragment implements AdapterView.OnItemClickListener {
 
     private ListView listViewTelephone;
     private TelephoneAdapter telephoneAdapter;
     private ArrayList<String> telephones = new ArrayList<>();
+    private String telephone;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    protected int getViewLayout() {
+        return R.layout.dialog_fragment_telephone;
+    }
 
-        View view = inflater.inflate(R.layout.dialog_fragment_telephone, container, false);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        if(getDialog().getWindow() != null){
-            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        }
+        initialize(view);
+    }
 
-        Bundle bundle = this.getArguments();
-        if(bundle != null){
-            telephones = bundle.getStringArrayList("telephones");
-        }
-
+    private void initialize(View view){
         listViewTelephone = view.findViewById(R.id.listViewTelephone);
-        telephoneAdapter = new TelephoneAdapter(getContext(), telephones);
+        telephoneAdapter = new TelephoneAdapter(getContext(), bundleTelephone());
         listViewTelephone.setAdapter(telephoneAdapter);
-
         listViewTelephone.setOnItemClickListener(this);
-
-        return view;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        String telephone = (String) parent.getItemAtPosition(position);
+        telephone = (String) parent.getItemAtPosition(position);
+        parseIntent(telephone);
+    }
 
+    private ArrayList<String> bundleTelephone(){
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            telephones = bundle.getStringArrayList("telephones");
+        }
+        return telephones;
+    }
+
+    private void parseIntent(String tel){
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + telephone));
+        intent.setData(Uri.parse("tel:" + tel));
         startActivity(intent);
     }
 }

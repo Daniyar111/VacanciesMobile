@@ -1,6 +1,5 @@
 package com.example.saint.aukg.ui.details;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,14 +9,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DetailsActivity extends BaseActivity implements View.OnClickListener {
 

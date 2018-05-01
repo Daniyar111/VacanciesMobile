@@ -272,4 +272,28 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <style name="DialogFragmentTelephoneRelativeTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/padding_eight</item>
+        <item name="android:paddingBottom">@dimen/padding_eight</item>
+    </style>
+
+    <style name="DialogFragmentTelephoneTextTheme">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="18sp"
+        android:paddingBottom="18sp"
+        android:paddingLeft="30sp"
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_eighteen</item>
+        <item name="android:paddingBottom">@dimen/padding_eighteen</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingLeft">@dimen/padding_thirty</item>
+    </style>
 </resources>

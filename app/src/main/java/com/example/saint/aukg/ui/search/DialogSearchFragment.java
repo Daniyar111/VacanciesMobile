@@ -3,18 +3,15 @@ package com.example.saint.aukg.ui.search;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.ui.BaseDialogFragment;
 
-public class DialogSearchFragment extends DialogFragment implements View.OnClickListener{
+public class DialogSearchFragment extends BaseDialogFragment implements View.OnClickListener{
 
     private RadioGroup radioGroupRegimeFirst, radioGroupRegimeSecond, radioGroupSalaryFirst, radioGroupSalarySecond;
     private RadioButton radioButtonRegimeAny, radioButtonFull, radioButtonFlexible, radioButtonRemotely, radioButtonNight, radioButtonSalaryAny, radioButtonFiveMore, radioButtonTenMore, radioButtonThirtyMore;
@@ -22,16 +19,20 @@ public class DialogSearchFragment extends DialogFragment implements View.OnClick
     private boolean flagRegime = true;
     private boolean flagSalary = true;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected int getViewLayout() {
+        return R.layout.dialog_fragment_search;
+    }
 
-        View view = inflater.inflate(R.layout.dialog_fragment_search, container, false);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        if(getDialog().getWindow() != null){
-            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        }
+        removeDialogToolbar();
+        initialize(view);
+    }
 
+    private void initialize(View view){
         radioGroupRegimeFirst = view.findViewById(R.id.radioGroupRegimeFirst);
         radioGroupRegimeSecond = view.findViewById(R.id.radioGroupRegimeSecond);
         radioGroupSalaryFirst = view.findViewById(R.id.radioGroupSalaryFirst);
@@ -60,8 +61,6 @@ public class DialogSearchFragment extends DialogFragment implements View.OnClick
 
         buttonReset.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
-
-        return view;
     }
 
     @Override
@@ -70,12 +69,7 @@ public class DialogSearchFragment extends DialogFragment implements View.OnClick
         switch (v.getId()){
             case R.id.buttonReset:
 
-                radioGroupRegimeFirst.clearCheck();
-                radioGroupRegimeSecond.clearCheck();
-                radioGroupSalaryFirst.clearCheck();
-                radioGroupSalarySecond.clearCheck();
-                radioButtonRegimeAny.setChecked(true);
-                radioButtonSalaryAny.setChecked(true);
+                resetButtons();
                 break;
 
             case R.id.buttonSearch:
@@ -83,6 +77,15 @@ public class DialogSearchFragment extends DialogFragment implements View.OnClick
                 break;
         }
 
+    }
+
+    private void resetButtons(){
+        radioGroupRegimeFirst.clearCheck();
+        radioGroupRegimeSecond.clearCheck();
+        radioGroupSalaryFirst.clearCheck();
+        radioGroupSalarySecond.clearCheck();
+        radioButtonRegimeAny.setChecked(true);
+        radioButtonSalaryAny.setChecked(true);
     }
 
     RadioGroup.OnCheckedChangeListener radioGroupRegimeFirstListener = new RadioGroup.OnCheckedChangeListener() {

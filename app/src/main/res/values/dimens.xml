@@ -2,14 +2,18 @@
 <resources>
 
     <!--Padding-->
+    <dimen name="padding_five">5sp</dimen>
     <dimen name="padding_eight">8sp</dimen>
     <dimen name="padding_ten">10sp</dimen>
     <dimen name="padding_fifteen">15sp</dimen>
+    <dimen name="padding_eighteen">18sp</dimen>
+    <dimen name="padding_thirty">30sp</dimen>
     <dimen name="padding_forty">40sp</dimen>
 
     <!--Margin-->
     <dimen name="margin_five">5sp</dimen>
     <dimen name="margin_ten">10sp</dimen>
     <dimen name="margin_fifteen">15sp</dimen>
+    <dimen name="margin_forty_five">45sp</dimen>
 
 </resources>

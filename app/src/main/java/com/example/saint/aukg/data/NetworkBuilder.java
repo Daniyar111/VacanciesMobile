@@ -14,18 +14,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class NetworkBuilder {
 
-    private static RetrofitService service = null;
+    private static RetrofitService sService = null;
 
     public static RetrofitService initService() {
-        if (service == null) {
-            service = new Retrofit.Builder()
+        if (sService == null) {
+            sService = new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(getClient())
                     .build()
                     .create(RetrofitService.class);
         }
-        return service;
+        return sService;
     }
 
     private static OkHttpClient getClient() {

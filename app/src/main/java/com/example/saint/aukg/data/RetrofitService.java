@@ -1,10 +1,9 @@
 package com.example.saint.aukg.data;
 
-import com.example.saint.aukg.models.VacancyModel;
+import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -19,4 +18,13 @@ public interface RetrofitService {
                                            @Field("f") String f,
                                            @Field("limit") String limit,
                                            @Field("page") String page);
+
+    @FormUrlEncoded
+    @POST(Constants.MOBILE_API)
+    Call<ArrayList<VacancyModel>> postSearchingVacancies(@Field("login") String login,
+                                                         @Field("f") String f,
+                                                         @Field("limit") String limit,
+                                                         @Field("page") String page,
+                                                         @Field("salary") String salary,
+                                                         @Field("term") String term);
 }

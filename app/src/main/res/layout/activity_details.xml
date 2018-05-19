@@ -8,29 +8,38 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolbarTheme"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/AppTheme" />
 
     <LinearLayout style="@style/DetailsHorizontalLinearLayoutTheme">
 
-        <LinearLayout style="@style/DetailsButtonTheme">
+        <LinearLayout
+            android:id="@+id/buttonPrevious"
+            style="@style/DetailsButtonTheme">
 
             <FrameLayout
+                android:id="@+id/frameLayoutPrevious"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_prev" />
 
             <TextView
+                android:id="@+id/textViewPrevious"
                 style="@style/DetailsButtonTextViewTheme"
                 android:text="@string/previous" />
         </LinearLayout>
 
-        <LinearLayout style="@style/DetailsButtonTheme">
+        <LinearLayout
+            android:id="@+id/buttonNext"
+            style="@style/DetailsButtonTheme">
 
             <TextView
+                android:id="@+id/textViewNext"
                 style="@style/DetailsButtonTextViewTheme"
                 android:text="@string/next" />
 
             <FrameLayout
+                android:id="@+id/frameLayoutNext"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_next" />

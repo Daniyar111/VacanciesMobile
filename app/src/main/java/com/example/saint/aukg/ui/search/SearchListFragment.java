@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.vacancies;
+package com.example.saint.aukg.ui.search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import com.example.saint.aukg.data.db.SQLiteHelper;
 import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseFragment;
 import com.example.saint.aukg.ui.details.DetailsActivity;
+import com.example.saint.aukg.ui.vacancies.MainVacanciesAdapter;
+import com.example.saint.aukg.ui.vacancies.VacanciesAdapterCallback;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -29,11 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by saint on 15.04.2018.
- */
-
-public class VacanciesFragment extends BaseFragment implements VacanciesAdapterCallback, SwipyRefreshLayout.OnRefreshListener{
+public class SearchListFragment extends BaseFragment implements VacanciesAdapterCallback, SwipyRefreshLayout.OnRefreshListener{
 
     private RetrofitService mService;
     private RecyclerView mRecyclerView;
@@ -44,6 +42,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
     private int mPage = 1;
     private FrameLayout mProgressBar;
     private SQLiteHelper mSQLiteHelper;
+    private String mSalary, mTerm;
 
     @Override
     protected int getViewLayout() {
@@ -63,7 +62,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
 
         getRecyclerView(view);
         setSwipyRefreshLayout(view);
-        internetChecking();
+        getVacancies();
     }
 
     private void getRecyclerView(View view){
@@ -82,29 +81,19 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
 
         mProgressBar.setVisibility(View.VISIBLE);
 
+        mSalary = mSQLiteHelper.getRadioButtons().getSalary();
+        mTerm = mSQLiteHelper.getRadioButtons().getRegime();
+
         mService = AuApplication.get(mContext).getService();
-        mService.postVacancies("au", "get_all_vacancies", "20", String.valueOf(mPage))
+        mService.postSearchingVacancies("au", "get_post_by_filter", "30", String.valueOf(mPage), mSalary, mTerm)
                 .enqueue(new Callback<ArrayList<VacancyModel>>() {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<VacancyModel>> call, @NonNull final Response<ArrayList<VacancyModel>> response) {
 
                         if(response.isSuccessful() && response.body() != null){
 
-                            new Thread(new Runnable() {
-                                public void run() {
-
-                                    if(mPage == 1){
-                                        try{
-                                            mSQLiteHelper.saveListWithoutInternet(response.body());
-                                        }catch (IllegalStateException e){
-                                            Toast.makeText(getContext(), "Can not save data", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                }
-                            }).start();
-
                             mVacancyModels.addAll(response.body());
-                            mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, VacanciesFragment.this);
+                            mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, SearchListFragment.this);
                             mRecyclerView.setAdapter(mAdapter);
                         }
                         mProgressBar.setVisibility(View.GONE);
@@ -119,25 +108,6 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
                 });
     }
 
-    private void internetChecking(){
-        ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(manager != null){
-            NetworkInfo info = manager.getActiveNetworkInfo();
-            if(info != null && info.isConnected()){
-                getVacancies();
-
-            }
-            else {
-                if(mVacancyModels != null && mSQLiteHelper.getListWithoutInternet() != null){
-                    mVacancyModels = mSQLiteHelper.getListWithoutInternet();
-                    mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, VacanciesFragment.this);
-                    mRecyclerView.setAdapter(mAdapter);
-                }
-                Toast.makeText(mContext, mContext.getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
         mPage++;
@@ -149,9 +119,11 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
     public void onVacancyClicked(final ArrayList<VacancyModel> vacancyModels, final int position) {
 
         Intent intent = new Intent(mContext, DetailsActivity.class);
+
         intent.putParcelableArrayListExtra("vacancy_models", vacancyModels);
         intent.putExtra("position", position);
 
         startActivity(intent);
     }
 }
+

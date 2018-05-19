@@ -1,4 +1,4 @@
-package com.example.saint.aukg.models;
+package com.example.saint.aukg.data.models;
 
 import android.support.v4.app.Fragment;
 
@@ -8,19 +8,19 @@ import android.support.v4.app.Fragment;
 
 public class TabPagerItem {
 
-    private final Fragment fragment;
-    private final CharSequence charSequence;
+    private final Fragment mFragment;
+    private final CharSequence mCharSequence;
 
     public TabPagerItem(Fragment fragment, CharSequence charSequence) {
-        this.fragment = fragment;
-        this.charSequence = charSequence;
+        this.mFragment = fragment;
+        this.mCharSequence = charSequence;
     }
 
     public Fragment getFragment() {
-        return fragment;
+        return mFragment;
     }
 
     public CharSequence getCharSequence() {
-        return charSequence;
+        return mCharSequence;
     }
 }

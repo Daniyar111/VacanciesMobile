@@ -29,65 +29,101 @@
                             style="@style/VacanciesFrameImageTheme"
                             android:background="@drawable/ic_profile_name" />
 
-                        <com.example.saint.aukg.ui.fonts.TextFontLight
-                            android:id="@+id/textViewProfile"
-                            style="@style/VacanciesTextFontLightTheme"
+                        <LinearLayout
+                            style="@style/VacanciesLinearLayoutHorizontalTheme"
                             android:layout_toEndOf="@id/imageProfile"
-                            android:layout_toRightOf="@id/imageProfile" />
+                            android:layout_toRightOf="@id/imageProfile"
+                            android:weightSum="3">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                    android:id="@+id/textViewProfile"
+                                    style="@style/VacanciesTextFontLightTheme"
+                                    android:layout_centerInParent="true"/>
+                            </RelativeLayout>
 
-                        <com.example.saint.aukg.ui.fonts.TextFontLight
-                            android:id="@+id/textViewDate"
-                            style="@style/VacanciesTextDateTheme"/>
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2">
+                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                    android:id="@+id/textViewDate"
+                                    style="@style/VacanciesTextDateTheme"/>
+                            </RelativeLayout>
+                        </LinearLayout>
                     </RelativeLayout>
 
-                    <RelativeLayout style="@style/RelativeWrapTheme">
+                    <RelativeLayout style="@style/RelativeWrapTheme"
+                        android:layout_marginTop="10sp">
 
-                        <RelativeLayout
-                            android:id="@+id/relativeSalary"
-                            style="@style/RelativeWrapTheme"
-                            android:layout_marginTop="@dimen/margin_fifteen">
+                        <FrameLayout
+                            android:id="@+id/imageSalary"
+                            style="@style/VacanciesFrameImageTheme"
+                            android:background="@drawable/ic_salary" />
 
-                            <FrameLayout
-                                android:id="@+id/imageSalary"
-                                style="@style/VacanciesFrameImageTheme"
-                                android:background="@drawable/ic_salary" />
-
-                            <com.example.saint.aukg.ui.fonts.TextFontLight
-                                android:id="@+id/textViewSalary"
-                                style="@style/VacanciesTextFontSalaryTheme"
-                                android:layout_toEndOf="@id/imageSalary"
-                                android:layout_toRightOf="@id/imageSalary" />
-                        </RelativeLayout>
-
-                        <com.example.saint.aukg.ui.fonts.TextFontLight
-                            android:id="@+id/textViewSiteAddress"
-                            style="@style/VacanciesTextSiteTheme"/>
+                        <LinearLayout
+                            style="@style/VacanciesLinearLayoutHorizontalTheme"
+                            android:layout_toEndOf="@id/imageSalary"
+                            android:layout_toRightOf="@id/imageSalary"
+                            android:weightSum="2">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                    android:id="@+id/textViewSalary"
+                                    style="@style/VacanciesTextFontSalaryTheme"
+                                    android:layout_centerInParent="true"/>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                    android:id="@+id/textViewSiteAddress"
+                                    style="@style/VacanciesTextSiteTheme"/>
+                            </RelativeLayout>
+                        </LinearLayout>
                     </RelativeLayout>
 
                     <RelativeLayout
                         style="@style/RelativeWrapTheme"
                         android:background="@drawable/border_bottom">
 
-                        <RelativeLayout
-                            android:id="@+id/relativeCall"
-                            style="@style/RelativeWrapTheme"
-                            android:layout_marginTop="@dimen/margin_fifteen">
+                        <FrameLayout
+                            android:id="@+id/imageCall"
+                            style="@style/VacanciesFrameImageTheme"
+                            android:background="@drawable/ic_telephone_number" />
 
-                            <FrameLayout
-                                android:id="@+id/imageCall"
-                                style="@style/VacanciesFrameImageTheme"
-                                android:background="@drawable/ic_telephone_number" />
+                        <LinearLayout
+                            style="@style/VacanciesLinearLayoutHorizontalTheme"
+                            android:layout_toEndOf="@id/imageCall"
+                            android:layout_toRightOf="@id/imageCall"
+                            android:weightSum="4">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                    android:id="@+id/textViewTelephone"
+                                    style="@style/VacanciesTextFontTelephoneTheme"
+                                    android:layout_centerInParent="true"/>
+                            </RelativeLayout>
 
-                            <com.example.saint.aukg.ui.fonts.TextFontLight
-                                android:id="@+id/textViewTelephone"
-                                style="@style/VacanciesTextFontLightTheme"
-                                android:layout_toEndOf="@id/imageCall"
-                                android:layout_toRightOf="@id/imageCall" />
-                        </RelativeLayout>
 
-                        <CheckBox
-                            android:id="@+id/checkBoxElected"
-                            style="@style/VacanciesCheckBoxTheme" />
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3">
+                                <CheckBox
+                                    android:id="@+id/checkBoxElected"
+                                    style="@style/VacanciesCheckBoxTheme" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+
                     </RelativeLayout>
 
                     <com.example.saint.aukg.ui.fonts.TextFontLight

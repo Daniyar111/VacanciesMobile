@@ -2,6 +2,7 @@
 <resources>
 
     <!--Padding-->
+    <dimen name="padding_five">5sp</dimen>
     <dimen name="padding_eight">8sp</dimen>
     <dimen name="padding_ten">10sp</dimen>
     <dimen name="padding_fifteen">15sp</dimen>

@@ -8,226 +8,248 @@ import com.google.gson.annotations.SerializedName;
 
 public class VacancyModel implements Parcelable {
 
-    @SerializedName("id")
-    @Expose
-    private Object id;
-    @SerializedName("pid")
-    @Expose
-    private String pid;
-    @SerializedName("header")
-    @Expose
-    private String header;
-    @SerializedName("profile")
-    @Expose
-    private String profile;
-    @SerializedName("salary")
-    @Expose
-    private String salary;
-    @SerializedName("telephone")
-    @Expose
-    private String telephone;
-    @SerializedName("data")
-    @Expose
-    private String data;
-    @SerializedName("profession")
-    @Expose
-    private String profession;
-    @SerializedName("site_address")
-    @Expose
-    private String siteAddress;
-    @SerializedName("salary1")
-    @Expose
-    private String salary1;
-    @SerializedName("link")
-    @Expose
-    private String link;
-    @SerializedName("body")
-    @Expose
-    private String body;
-    @SerializedName("count1")
-    @Expose
-    private Object count1;
-    @SerializedName("image_src")
-    @Expose
-    private Object imageSrc;
-    @SerializedName("raiting")
-    @Expose
-    private Integer raiting;
-    @SerializedName("update_date")
-    @Expose
-    private String updateDate;
-    @SerializedName("term")
-    @Expose
-    private String term;
-    @SerializedName("post_created")
-    @Expose
-    private String postCreated;
-    @SerializedName("au_post_id")
-    @Expose
-    private Object auPostId;
-    @SerializedName("paid")
-    @Expose
-    private String paid;
+        @SerializedName("id")
+        @Expose
+        private Object id;
+        @SerializedName("pid")
+        @Expose
+        private String pid;
+        @SerializedName("header")
+        @Expose
+        private String header;
+        @SerializedName("profile")
+        @Expose
+        private String profile;
+        @SerializedName("salary")
+        @Expose
+        private String salary;
+        @SerializedName("telephone")
+        @Expose
+        private String telephone;
+        @SerializedName("data")
+        @Expose
+        private String data;
+        @SerializedName("profession")
+        @Expose
+        private String profession;
+        @SerializedName("site_address")
+        @Expose
+        private String siteAddress;
+        @SerializedName("salary1")
+        @Expose
+        private String salary1;
+        @SerializedName("link")
+        @Expose
+        private String link;
+        @SerializedName("body")
+        @Expose
+        private String body;
+        @SerializedName("count1")
+        @Expose
+        private Object count1;
+        @SerializedName("image_src")
+        @Expose
+        private Object imageSrc;
+        @SerializedName("raiting")
+        @Expose
+        private Integer raiting;
+        @SerializedName("update_date")
+        @Expose
+        private String updateDate;
+        @SerializedName("term")
+        @Expose
+        private String term;
+        @SerializedName("post_created")
+        @Expose
+        private String postCreated;
+        @SerializedName("au_post_id")
+        @Expose
+        private Object auPostId;
+        @SerializedName("paid")
+        @Expose
+        private String paid;
 
-    public Object getId() {
-        return id;
-    }
+        private boolean isWatched;
 
-    public void setId(Object id) {
-        this.id = id;
-    }
+        private boolean isElected;
 
-    public String getPid() {
-        return pid;
-    }
+        public VacancyModel(){}
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
+        public boolean getWatched() {
+            return isWatched;
+        }
 
-    public String getHeader() {
-        return header;
-    }
+        public void setWatched(boolean watched) {
+            isWatched = watched;
+        }
 
-    public void setHeader(String header) {
-        this.header = header;
-    }
+        public boolean getElected(){
+            return isElected;
+        }
 
-    public String getProfile() {
-        return profile;
-    }
+        public void setElected(boolean isElected){
+            this.isElected = isElected;
+        }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
+        public Object getId() {
+            return id;
+        }
 
-    public String getSalary() {
-        return salary;
-    }
+        public void setId(Object id) {
+            this.id = id;
+        }
 
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
+        public String getPid() {
+            return pid;
+        }
 
-    public String getTelephone() {
-        return telephone;
-    }
+        public void setPid(String pid) {
+            this.pid = pid;
+        }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+        public String getHeader() {
+            return header;
+        }
 
-    public String getData() {
-        return data;
-    }
+        public void setHeader(String header) {
+            this.header = header;
+        }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+        public String getProfile() {
+            return profile;
+        }
 
-    public String getProfession() {
-        return profession;
-    }
+        public void setProfile(String profile) {
+            this.profile = profile;
+        }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
+        public String getSalary() {
+            return salary;
+        }
 
-    public String getSiteAddress() {
-        return siteAddress;
-    }
+        public void setSalary(String salary) {
+            this.salary = salary;
+        }
 
-    public void setSiteAddress(String siteAddress) {
-        this.siteAddress = siteAddress;
-    }
+        public String getTelephone() {
+            return telephone;
+        }
 
-    public String getSalary1() {
-        return salary1;
-    }
+        public void setTelephone(String telephone) {
+            this.telephone = telephone;
+        }
 
-    public void setSalary1(String salary1) {
-        this.salary1 = salary1;
-    }
+        public String getData() {
+            return data;
+        }
 
-    public String getLink() {
-        return link;
-    }
+        public void setData(String data) {
+            this.data = data;
+        }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
+        public String getProfession() {
+            return profession;
+        }
 
-    public String getBody() {
-        return body;
-    }
+        public void setProfession(String profession) {
+            this.profession = profession;
+        }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+        public String getSiteAddress() {
+            return siteAddress;
+        }
 
-    public Object getCount1() {
-        return count1;
-    }
+        public void setSiteAddress(String siteAddress) {
+            this.siteAddress = siteAddress;
+        }
 
-    public void setCount1(Object count1) {
-        this.count1 = count1;
-    }
+        public String getSalary1() {
+            return salary1;
+        }
 
-    public Object getImageSrc() {
-        return imageSrc;
-    }
+        public void setSalary1(String salary1) {
+            this.salary1 = salary1;
+        }
 
-    public void setImageSrc(Object imageSrc) {
-        this.imageSrc = imageSrc;
-    }
+        public String getLink() {
+            return link;
+        }
 
-    public Integer getRaiting() {
-        return raiting;
-    }
+        public void setLink(String link) {
+            this.link = link;
+        }
 
-    public void setRaiting(Integer raiting) {
-        this.raiting = raiting;
-    }
+        public String getBody() {
+            return body;
+        }
 
-    public String getUpdateDate() {
-        return updateDate;
-    }
+        public void setBody(String body) {
+            this.body = body;
+        }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
+        public Object getCount1() {
+            return count1;
+        }
 
-    public String getTerm() {
-        return term;
-    }
+        public void setCount1(Object count1) {
+            this.count1 = count1;
+        }
 
-    public void setTerm(String term) {
-        this.term = term;
-    }
+        public Object getImageSrc() {
+            return imageSrc;
+        }
 
-    public String getPostCreated() {
-        return postCreated;
-    }
+        public void setImageSrc(Object imageSrc) {
+            this.imageSrc = imageSrc;
+        }
 
-    public void setPostCreated(String postCreated) {
-        this.postCreated = postCreated;
-    }
+        public Integer getRaiting() {
+            return raiting;
+        }
 
-    public Object getAuPostId() {
-        return auPostId;
-    }
+        public void setRaiting(Integer raiting) {
+            this.raiting = raiting;
+        }
 
-    public void setAuPostId(Object auPostId) {
-        this.auPostId = auPostId;
-    }
+        public String getUpdateDate() {
+            return updateDate;
+        }
 
-    public String getPaid() {
-        return paid;
-    }
+        public void setUpdateDate(String updateDate) {
+            this.updateDate = updateDate;
+        }
 
-    public void setPaid(String paid) {
-        this.paid = paid;
-    }
+        public String getTerm() {
+            return term;
+        }
+
+        public void setTerm(String term) {
+            this.term = term;
+        }
+
+        public String getPostCreated() {
+            return postCreated;
+        }
+
+        public void setPostCreated(String postCreated) {
+            this.postCreated = postCreated;
+        }
+
+        public Object getAuPostId() {
+            return auPostId;
+        }
+
+        public void setAuPostId(Object auPostId) {
+            this.auPostId = auPostId;
+        }
+
+        public String getPaid() {
+            return paid;
+        }
+
+        public void setPaid(String paid) {
+            this.paid = paid;
+        }
 
     protected VacancyModel(Parcel in) {
         id = (Object) in.readValue(Object.class.getClassLoader());
@@ -250,6 +272,8 @@ public class VacancyModel implements Parcelable {
         postCreated = in.readString();
         auPostId = (Object) in.readValue(Object.class.getClassLoader());
         paid = in.readString();
+        isWatched = in.readByte() != 0x00;
+        isElected = in.readByte() != 0x00;
     }
 
     @Override
@@ -284,6 +308,8 @@ public class VacancyModel implements Parcelable {
         dest.writeString(postCreated);
         dest.writeValue(auPostId);
         dest.writeString(paid);
+        dest.writeByte((byte) (isWatched ? 0x01 : 0x00));
+        dest.writeByte((byte) (isElected ? 0x01 : 0x00));
     }
 
     @SuppressWarnings("unused")

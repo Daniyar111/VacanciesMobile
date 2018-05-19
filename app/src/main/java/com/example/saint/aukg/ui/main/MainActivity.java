@@ -10,7 +10,7 @@ import com.example.saint.aukg.ui.search.DialogSearchFragment;
 
 public class MainActivity extends BaseActivity {
 
-    private DialogSearchFragment searchFragment;
+    private DialogSearchFragment mSearchfragment;
 
     @Override
     protected int getViewLayout() {
@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        searchFragment = new DialogSearchFragment();
-        searchFragment.show(getSupportFragmentManager(), "fragment");
+        mSearchfragment = new DialogSearchFragment();
+        mSearchfragment.show(getSupportFragmentManager(), "fragment");
         return super.onOptionsItemSelected(item);
     }
 

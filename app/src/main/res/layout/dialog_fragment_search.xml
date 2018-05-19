@@ -11,8 +11,7 @@
     <LinearLayout
         android:id="@+id/linearRegime"
         style="@style/DialogRadioGroupTheme"
-        android:layout_below="@id/textViewRegime"
-        android:weightSum="4">
+        android:layout_below="@id/textViewRegime">
 
         <RadioGroup
             android:id="@+id/radioGroupRegimeFirst"
@@ -59,8 +58,7 @@
     <LinearLayout
         android:id="@+id/linearSalary"
         style="@style/DialogRadioGroupTheme"
-        android:layout_below="@id/textViewSalary"
-        android:weightSum="2.2">
+        android:layout_below="@id/textViewSalary">
 
         <RadioGroup
             android:id="@+id/radioGroupSalaryFirst"

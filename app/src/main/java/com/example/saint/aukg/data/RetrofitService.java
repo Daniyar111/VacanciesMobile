@@ -18,4 +18,13 @@ public interface RetrofitService {
                                            @Field("f") String f,
                                            @Field("limit") String limit,
                                            @Field("page") String page);
+
+    @FormUrlEncoded
+    @POST(Constants.MOBILE_API)
+    Call<ArrayList<VacancyModel>> postSearchingVacancies(@Field("login") String login,
+                                                         @Field("f") String f,
+                                                         @Field("limit") String limit,
+                                                         @Field("page") String page,
+                                                         @Field("salary") String salary,
+                                                         @Field("term") String term);
 }

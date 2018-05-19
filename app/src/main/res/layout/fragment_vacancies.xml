@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/VerticalLinearLayoutTheme">
 
@@ -7,7 +7,7 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srl_direction="bottom">
+        app:srl_direction="top">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -16,4 +16,16 @@
             android:scrollbars="vertical" />
     </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+    
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.saint.aukg.ui.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,17 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.data.db.SQLiteHelper;
+import com.example.saint.aukg.data.models.SearchButtonsModel;
 import com.example.saint.aukg.ui.BaseDialogFragment;
 
 public class DialogSearchFragment extends BaseDialogFragment implements View.OnClickListener{
 
-    private RadioGroup radioGroupRegimeFirst, radioGroupRegimeSecond, radioGroupSalaryFirst, radioGroupSalarySecond;
-    private RadioButton radioButtonRegimeAny, radioButtonFull, radioButtonFlexible, radioButtonRemotely, radioButtonNight, radioButtonSalaryAny, radioButtonFiveMore, radioButtonTenMore, radioButtonThirtyMore;
-    private Button buttonReset, buttonSearch;
-    private boolean flagRegime = true;
-    private boolean flagSalary = true;
+    private RadioGroup mRadioGroupRegimeFirst, mRadioGroupRegimeSecond, mRadioGroupSalaryFirst, mRadioGroupSalarySecond;
+    private RadioButton mRadioButtonRegimeAny, mRadioButtonSalaryAny, mCheckedRadioButtonRegime, mCheckedRadioButtonSalary;
+    private Button mButtonReset, mButtonSearch;
+    private SearchButtonsModel mSearchButtonsModel = new SearchButtonsModel();
+    private SQLiteHelper mSQLiteHelper;
+    private boolean mFlagRegime = true;
+    private boolean mFlagSalary = true;
 
     @Override
     protected int getViewLayout() {
@@ -28,39 +35,48 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mSQLiteHelper = AuApplication.get(view.getContext()).getSQLiteHelper();
+        if(mSQLiteHelper != null){
+            mSearchButtonsModel = mSQLiteHelper.getRadioButtons();
+        }
+
         removeDialogToolbar();
         initialize(view);
+
+
+        if(mSQLiteHelper != null && mCheckedRadioButtonRegime != null && mCheckedRadioButtonSalary != null){
+
+//            mCheckedRadioButtonRegime = mSearchButtonsModel.getRegime();
+
+            mCheckedRadioButtonRegime.setChecked(true);
+            mCheckedRadioButtonSalary.setChecked(true);
+            Toast.makeText(getContext(), "work " + mCheckedRadioButtonRegime.getText() + " " + mCheckedRadioButtonSalary.getText(), Toast.LENGTH_LONG).show();
+        }
+        else{
+            mRadioButtonRegimeAny.setChecked(true);
+            mRadioButtonSalaryAny.setChecked(true);
+        }
     }
 
     private void initialize(View view){
-        radioGroupRegimeFirst = view.findViewById(R.id.radioGroupRegimeFirst);
-        radioGroupRegimeSecond = view.findViewById(R.id.radioGroupRegimeSecond);
-        radioGroupSalaryFirst = view.findViewById(R.id.radioGroupSalaryFirst);
-        radioGroupSalarySecond = view.findViewById(R.id.radioGroupSalarySecond);
+        mRadioGroupRegimeFirst = view.findViewById(R.id.radioGroupRegimeFirst);
+        mRadioGroupRegimeSecond = view.findViewById(R.id.radioGroupRegimeSecond);
+        mRadioGroupSalaryFirst = view.findViewById(R.id.radioGroupSalaryFirst);
+        mRadioGroupSalarySecond = view.findViewById(R.id.radioGroupSalarySecond);
 
-        radioButtonRegimeAny = view.findViewById(R.id.radioButtonRegimeAny);
-        radioButtonFull = view.findViewById(R.id.radioButtonFull);
-        radioButtonFlexible = view.findViewById(R.id.radioButtonFlexible);
-        radioButtonRemotely = view.findViewById(R.id.radioButtonRemotely);
-        radioButtonNight = view.findViewById(R.id.radioButtonNight);
-        radioButtonSalaryAny = view.findViewById(R.id.radioButtonSalaryAny);
-        radioButtonFiveMore = view.findViewById(R.id.radioButtonFiveMore);
-        radioButtonTenMore = view.findViewById(R.id.radioButtonTenMore);
-        radioButtonThirtyMore = view.findViewById(R.id.radioButtonThirtyMore);
+        mRadioButtonRegimeAny = view.findViewById(R.id.radioButtonRegimeAny);
+        mRadioButtonSalaryAny = view.findViewById(R.id.radioButtonSalaryAny);
 
-        buttonReset = view.findViewById(R.id.buttonReset);
-        buttonSearch = view.findViewById(R.id.buttonSearch);
+        mButtonReset = view.findViewById(R.id.buttonReset);
+        mButtonSearch = view.findViewById(R.id.buttonSearch);
 
-        radioButtonRegimeAny.setChecked(true);
-        radioButtonSalaryAny.setChecked(true);
+        mRadioGroupRegimeFirst.setOnCheckedChangeListener(radioGroupRegimeFirstListener);
+        mRadioGroupRegimeSecond.setOnCheckedChangeListener(radioGroupRegimeSecondListener);
+        mRadioGroupSalaryFirst.setOnCheckedChangeListener(radioGroupSalaryFirstListener);
+        mRadioGroupSalarySecond.setOnCheckedChangeListener(radioGroupSalarySecondListener);
 
-        radioGroupRegimeFirst.setOnCheckedChangeListener(radioGroupRegimeFirstListener);
-        radioGroupRegimeSecond.setOnCheckedChangeListener(radioGroupRegimeSecondListener);
-        radioGroupSalaryFirst.setOnCheckedChangeListener(radioGroupSalaryFirstListener);
-        radioGroupSalarySecond.setOnCheckedChangeListener(radioGroupSalarySecondListener);
-
-        buttonReset.setOnClickListener(this);
-        buttonSearch.setOnClickListener(this);
+        mButtonReset.setOnClickListener(this);
+        mButtonSearch.setOnClickListener(this);
     }
 
     @Override
@@ -74,30 +90,33 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
 
             case R.id.buttonSearch:
 
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
                 break;
         }
-
     }
 
     private void resetButtons(){
-        radioGroupRegimeFirst.clearCheck();
-        radioGroupRegimeSecond.clearCheck();
-        radioGroupSalaryFirst.clearCheck();
-        radioGroupSalarySecond.clearCheck();
-        radioButtonRegimeAny.setChecked(true);
-        radioButtonSalaryAny.setChecked(true);
+        mRadioGroupRegimeFirst.clearCheck();
+        mRadioGroupRegimeSecond.clearCheck();
+        mRadioGroupSalaryFirst.clearCheck();
+        mRadioGroupSalarySecond.clearCheck();
+        mRadioButtonRegimeAny.setChecked(true);
+        mRadioButtonSalaryAny.setChecked(true);
     }
 
     RadioGroup.OnCheckedChangeListener radioGroupRegimeFirstListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-            if((group.getCheckedRadioButtonId() != -1) && flagRegime){
-                flagRegime = false;
-                radioGroupRegimeSecond.clearCheck();
+            if((group.getCheckedRadioButtonId() != -1) && mFlagRegime){
+                mFlagRegime = false;
+                mRadioGroupRegimeSecond.clearCheck();
+
+                mCheckedRadioButtonRegime = group.findViewById(checkedId);
             }
             else{
-                flagRegime = true;
+                mFlagRegime = true;
             }
         }
     };
@@ -106,12 +125,14 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-            if((group.getCheckedRadioButtonId() != -1) && flagRegime){
-                flagRegime = false;
-                radioGroupRegimeFirst.clearCheck();
+            if((group.getCheckedRadioButtonId() != -1) && mFlagRegime){
+                mFlagRegime = false;
+                mRadioGroupRegimeFirst.clearCheck();
+
+                mCheckedRadioButtonRegime = group.findViewById(checkedId);
             }
             else{
-                flagRegime = true;
+                mFlagRegime = true;
             }
         }
     };
@@ -120,12 +141,14 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-            if((group.getCheckedRadioButtonId() != -1) && flagSalary){
-                flagSalary = false;
-                radioGroupSalarySecond.clearCheck();
+            if((group.getCheckedRadioButtonId() != -1) && mFlagSalary){
+                mFlagSalary = false;
+                mRadioGroupSalarySecond.clearCheck();
+
+                mCheckedRadioButtonSalary = group.findViewById(checkedId);
             }
             else {
-                flagSalary = true;
+                mFlagSalary = true;
             }
         }
     };
@@ -134,13 +157,28 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-            if((group.getCheckedRadioButtonId() != -1) && flagSalary){
-                flagSalary = false;
-                radioGroupSalaryFirst.clearCheck();
+            if((group.getCheckedRadioButtonId() != -1) && mFlagSalary){
+                mFlagSalary = false;
+                mRadioGroupSalaryFirst.clearCheck();
+
+                mCheckedRadioButtonSalary = group.findViewById(checkedId);
             }
             else {
-                flagSalary = true;
+                mFlagSalary = true;
             }
         }
     };
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        new Thread(new Runnable() {
+            public void run() {
+                mSearchButtonsModel.setRegime(mCheckedRadioButtonRegime.getText().toString());
+                mSearchButtonsModel.setSalary(mCheckedRadioButtonSalary.getText().toString());
+                mSQLiteHelper.saveRadioButtons(mSearchButtonsModel);
+            }
+        }).start();
+    }
 }

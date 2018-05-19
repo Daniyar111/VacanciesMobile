@@ -13,22 +13,22 @@ import java.util.ArrayList;
 
 public class TelephoneAdapter extends BaseAdapter {
 
-    private ArrayList<String> arrayList;
-    private Context context;
+    private ArrayList<String> mArrayList;
+    private Context mContext;
 
     public TelephoneAdapter(Context context, ArrayList<String> arrayList){
-        this.context = context;
-        this.arrayList = arrayList;
+        this.mContext = context;
+        this.mArrayList = arrayList;
     }
 
     @Override
     public int getCount() {
-        return arrayList.size();
+        return mArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return arrayList.get(position);
+        return mArrayList.get(position);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TelephoneAdapter extends BaseAdapter {
 
         ViewHolder viewHolder;
         if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_telephone, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item_telephone, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
@@ -50,15 +50,15 @@ public class TelephoneAdapter extends BaseAdapter {
         }
 
         String telephone = (String) getItem(position);
-        viewHolder.textViewDialogTelephone.setText(telephone);
+        viewHolder.mTextViewDialogTelephone.setText(telephone);
 
         return convertView;
     }
 
     private class ViewHolder{
-        private TextView textViewDialogTelephone;
+        private TextView mTextViewDialogTelephone;
         public ViewHolder(View view){
-            textViewDialogTelephone = view.findViewById(R.id.textViewDialogTelephone);
+            mTextViewDialogTelephone = view.findViewById(R.id.textViewDialogTelephone);
         }
     }
 }

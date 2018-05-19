@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.saint.aukg.R;
@@ -12,16 +13,16 @@ import com.example.saint.aukg.ui.main.MainActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private ProgressBar progressBar;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_IN);
-
+        mProgressBar = findViewById(R.id.progressBar);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_IN);
+        mProgressBar.setVisibility(View.VISIBLE);
         Handler handler = new Handler();
 
         Runnable runnable = new Runnable() {
@@ -35,7 +36,7 @@ public class SplashScreen extends AppCompatActivity {
             }
         };
 
-
+        handler.postDelayed(runnable, 2000);
 
     }
 }

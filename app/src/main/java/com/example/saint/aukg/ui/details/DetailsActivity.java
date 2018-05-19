@@ -9,26 +9,33 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.data.db.SQLiteHelper;
 import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class DetailsActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView textViewHeader, textViewProfile, textViewDate, textViewSalary, textViewSiteAddress, textViewTelephone, textViewBody;
-    private LinearLayout buttonPrevious, buttonNext;
-    private RelativeLayout buttonCall;
-    private FrameLayout frameLayoutPrevious, frameLayoutNext;
-    private TextView textViewPrevious, textViewNext;
-    private VacancyModel vacancyModel;
-    private ArrayList<VacancyModel> vacancyModels;
-    private DialogTelephoneFragment dialogTelephoneFragment;
-    private int position;
-    private ArrayList<String> telephones;
-    private String telephone, vacancyTelephone;
+    private TextView mTextViewHeader, mTextViewProfile, mTextViewDate, mTextViewSalary, mTextViewSiteAddress, mTextViewTelephone, mTextViewBody;
+    private LinearLayout mButtonPrevious, mButtonNext;
+    private RelativeLayout mButtonCall;
+    private FrameLayout mFrameLayoutPrevious, mFrameLayoutNext;
+    private TextView mTextViewPrevious, mTextViewNext;
+    private VacancyModel mVacancyModel;
+    private ArrayList<VacancyModel> mVacancyModels;
+    private DialogTelephoneFragment mDialogTelephoneFragment;
+    private int mPosition;
+    private ArrayList<String> mTelephones;
+    private String mTelephone, mVacancyTelephone;
 
 
     @Override
@@ -48,31 +55,13 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         getToolbar(getResources().getString(R.string.vacancies), true);
 
-        textViewHeader = findViewById(R.id.textViewHeader);
-        textViewProfile = findViewById(R.id.textViewProfile);
-        textViewDate = findViewById(R.id.textViewDate);
-        textViewSalary = findViewById(R.id.textViewSalary);
-        textViewSiteAddress = findViewById(R.id.textViewSiteAddress);
-        textViewTelephone = findViewById(R.id.textViewTelephone);
-        textViewBody = findViewById(R.id.textViewBody);
-
-        frameLayoutPrevious = findViewById(R.id.frameLayoutPrevious);
-        frameLayoutNext = findViewById(R.id.frameLayoutNext);
-        textViewPrevious = findViewById(R.id.textViewPrevious);
-        textViewNext = findViewById(R.id.textViewNext);
-
-        buttonPrevious = findViewById(R.id.buttonPrevious);
-        buttonNext = findViewById(R.id.buttonNext);
-        buttonCall = findViewById(R.id.buttonCall);
-
-        buttonPrevious.setOnClickListener(this);
-        buttonNext.setOnClickListener(this);
-        buttonCall.setOnClickListener(this);
+        initialize();
 
         if(getIntent() != null){
 
-            vacancyModels = getIntent().getParcelableArrayListExtra("vacancy_models");
-            position = getIntent().getIntExtra("position", 0);
+            mVacancyModels = getIntent().getParcelableArrayListExtra("vacancy_models");
+            mPosition = getIntent().getIntExtra("position", 0);
+
             updateData();
         }
 
@@ -110,160 +99,142 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    private void initialize(){
+        mTextViewHeader = findViewById(R.id.textViewHeader);
+        mTextViewProfile = findViewById(R.id.textViewProfile);
+        mTextViewDate = findViewById(R.id.textViewDate);
+        mTextViewSalary = findViewById(R.id.textViewSalary);
+        mTextViewSiteAddress = findViewById(R.id.textViewSiteAddress);
+        mTextViewTelephone = findViewById(R.id.textViewTelephone);
+        mTextViewBody = findViewById(R.id.textViewBody);
+
+        mFrameLayoutPrevious = findViewById(R.id.frameLayoutPrevious);
+        mFrameLayoutNext = findViewById(R.id.frameLayoutNext);
+        mTextViewPrevious = findViewById(R.id.textViewPrevious);
+        mTextViewNext = findViewById(R.id.textViewNext);
+
+        mButtonPrevious = findViewById(R.id.buttonPrevious);
+        mButtonNext = findViewById(R.id.buttonNext);
+        mButtonCall = findViewById(R.id.buttonCall);
+
+        mButtonPrevious.setOnClickListener(this);
+        mButtonNext.setOnClickListener(this);
+        mButtonCall.setOnClickListener(this);
+    }
+
     private void showButtons(){
-        if(position == 0){
-            frameLayoutPrevious.setVisibility(View.INVISIBLE);
-            textViewPrevious.setVisibility(View.INVISIBLE);
-            buttonPrevious.setClickable(false);
+        if(mPosition == 0){
+            mFrameLayoutPrevious.setVisibility(View.INVISIBLE);
+            mTextViewPrevious.setVisibility(View.INVISIBLE);
+            mButtonPrevious.setClickable(false);
             return;
         }
-        if(position == vacancyModels.size() - 1){
-            frameLayoutNext.setVisibility(View.INVISIBLE);
-            textViewNext.setVisibility(View.INVISIBLE);
-            buttonNext.setClickable(false);
+        if(mPosition == mVacancyModels.size() - 1){
+            mFrameLayoutNext.setVisibility(View.INVISIBLE);
+            mTextViewNext.setVisibility(View.INVISIBLE);
+            mButtonNext.setClickable(false);
         }
         else{
-            frameLayoutPrevious.setVisibility(View.VISIBLE);
-            textViewPrevious.setVisibility(View.VISIBLE);
-            frameLayoutNext.setVisibility(View.VISIBLE);
-            textViewNext.setVisibility(View.VISIBLE);
-            buttonPrevious.setClickable(true);
-            buttonNext.setClickable(true);
+            mFrameLayoutPrevious.setVisibility(View.VISIBLE);
+            mTextViewPrevious.setVisibility(View.VISIBLE);
+            mFrameLayoutNext.setVisibility(View.VISIBLE);
+            mTextViewNext.setVisibility(View.VISIBLE);
+            mButtonPrevious.setClickable(true);
+            mButtonNext.setClickable(true);
         }
 
     }
 
     private void updateData(){
-        vacancyModel = vacancyModels.get(position);
-        textViewHeader.setText(vacancyModel.getHeader());
-        textViewProfile.setText(vacancyModel.getProfile());
-        setTextViewDate();
+        mVacancyModel = mVacancyModels.get(mPosition);
+        mTextViewHeader.setText(mVacancyModel.getHeader());
+        mTextViewProfile.setText(mVacancyModel.getProfile());
+        mTextViewDate.setText(formatTextViewDate(mVacancyModel.getData()));
         setTextViewSalary();
-        textViewSiteAddress.setText(vacancyModel.getSiteAddress());
+        mTextViewSiteAddress.setText(mVacancyModel.getSiteAddress());
         setTextViewTelephone();
-        textViewBody.setText(vacancyModel.getBody());
+        mTextViewBody.setText(mVacancyModel.getBody());
     }
 
     private void previousVacancy(){
-        position--;
+        mPosition--;
         showButtons();
         updateData();
     }
 
     private void nextVacancy(){
-        position++;
+        mPosition++;
         showButtons();
         updateData();
     }
 
     private void setTextViewSalary(){
-        if(vacancyModel.getSalary().equals("")){
-            textViewSalary.setText(R.string.treaty);
+        if(mVacancyModel.getSalary().equals("")){
+            mTextViewSalary.setText(R.string.treaty);
         }
         else {
-            textViewSalary.setText(vacancyModel.getSalary());
+            mTextViewSalary.setText(mVacancyModel.getSalary());
         }
     }
 
-    private void setTextViewDate(){
-
-        String fullDate = vacancyModel.getData();
-        String[] splittingFullDate = fullDate.split(" ");
-        String[] splittingTime = splittingFullDate[1].split(":");
-        String[] splittingDate = splittingFullDate[0].split("-");
-        String newTime = splittingTime[0] + ":" + splittingTime[1];
-        String newDate = splittingDate[2] + " " + transformMonth(splittingDate[1]) + " " + splittingDate[0];
-
-        String currentFullDate = newTime + " " + newDate;
-        textViewDate.setText(currentFullDate);
-    }
-
-    private String transformMonth(String month){
-
-        String normalMonth = "";
-        switch (month){
-            case "01":
-                normalMonth = "Янв";
-                break;
-            case "02":
-                normalMonth = "Фев";
-                break;
-            case "03":
-                normalMonth = "Мар";
-                break;
-            case "04":
-                normalMonth = "Апр";
-                break;
-            case "05":
-                normalMonth = "Май";
-                break;
-            case "06":
-                normalMonth = "Июн";
-                break;
-            case "07":
-                normalMonth = "Июл";
-                break;
-            case "08":
-                normalMonth = "Авг";
-                break;
-            case "09":
-                normalMonth = "Сен";
-                break;
-            case "10":
-                normalMonth = "Окт";
-                break;
-            case "11":
-                normalMonth = "Ноя";
-                break;
-            case "12":
-                normalMonth = "Дек";
-                break;
+    private String formatTextViewDate(String textDate) {
+        String inputPattern = "yyyy-MM-dd HH:mm:ss";
+        String outputPattern = "HH:mm dd MMM yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern, Locale.getDefault());
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern, Locale.getDefault());
+        Date date;
+        String output = null;
+        try {
+            date = inputFormat.parse(textDate);
+            output = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        return normalMonth;
+        return output;
     }
 
     private void setTextViewTelephone(){
-        vacancyTelephone = vacancyModel.getTelephone().trim();
-        if(vacancyTelephone.equals("")){
-            textViewTelephone.setText(R.string.undefined);
-            buttonCall.setVisibility(View.INVISIBLE);
+        mVacancyTelephone = mVacancyModel.getTelephone().trim();
+        if(mVacancyTelephone.equals("")){
+            mTextViewTelephone.setText(R.string.undefined);
+            mButtonCall.setVisibility(View.INVISIBLE);
         }
-        else if(vacancyTelephone.contains("@") && !vacancyTelephone.contains(" ") && !vacancyTelephone.contains(";")){
-            buttonCall.setVisibility(View.INVISIBLE);
-            textViewTelephone.setText(vacancyModel.getTelephone());
+        else if(mVacancyTelephone.contains("@") && !mVacancyTelephone.contains(" ") && !mVacancyTelephone.contains(";")){
+            mButtonCall.setVisibility(View.INVISIBLE);
+            mTextViewTelephone.setText(mVacancyModel.getTelephone());
         }
         else{
-            textViewTelephone.setText(vacancyModel.getTelephone());
-            buttonCall.setVisibility(View.VISIBLE);
+            mTextViewTelephone.setText(mVacancyModel.getTelephone());
+            mButtonCall.setVisibility(View.VISIBLE);
         }
     }
 
     public void pushTelephone(){
 
-        telephone = vacancyModel.getTelephone();
-        telephones = new ArrayList<>();
+        mTelephone = mVacancyModel.getTelephone();
+        mTelephones = new ArrayList<>();
 
         // if (0551440114; 0708440114) || (0551440114; 0708440114; 0778440114)
         // if (0551440114; 0708440114 dani.fdgfwj312232@gmail.com)
 
-        if(telephone.contains("; ")){
-            telephones = getListTelephone();
-            dialogTelephoneFragment = new DialogTelephoneFragment();
+        if(mTelephone.contains("; ")){
+            mTelephones = getListTelephone();
+            mDialogTelephoneFragment = new DialogTelephoneFragment();
 
             Bundle bundle = new Bundle();
-            bundle.putStringArrayList("telephones", telephones);
-            dialogTelephoneFragment.setArguments(bundle);
-            dialogTelephoneFragment.show(getSupportFragmentManager(), "telephone");
+            bundle.putStringArrayList("telephones", mTelephones);
+            mDialogTelephoneFragment.setArguments(bundle);
+            mDialogTelephoneFragment.show(getSupportFragmentManager(), "telephone");
         }
 
         // if (0551440114 dani.changylov42123@gmail.com) (dani.changylov431@gmail.com 0551440114)
-        else if(telephone.contains("@") && telephone.contains(" ") && !telephone.contains(";")){
-            telephone = divideTelAndMail();
-            parseIntent(telephone);
+        else if(mTelephone.contains("@") && mTelephone.contains(" ") && !mTelephone.contains(";")){
+            mTelephone = divideTelAndMail();
+            parseIntent(mTelephone);
         }
         else{
-            buttonCall.setVisibility(View.VISIBLE);
-            parseIntent(telephone);
+            mButtonCall.setVisibility(View.VISIBLE);
+            parseIntent(mTelephone);
         }
     }
 
@@ -276,9 +247,9 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<String> getListTelephone(){
 
         // if (0551440114; 0708440114) || (0551440114; 0708440114; 0778440114)
-        // if (0551440114; 0708440114 dani.fdgfwj312232@gmail.com; 0551423232)
+        // if (0551440114; 0708440114 dani.fdgfwj312232@gmail.com)
 
-        String[] splittingTelephone = telephone.split("; ");
+        String[] splittingTelephone = mTelephone.split("; ");
         String[] splittingTelAndMail = new String[]{};
         ArrayList<String> telephonesList = new ArrayList<>();
 
@@ -302,7 +273,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         // if (0551440114 dani.changylov42123@gmail.com) (dani.changylov431@gmail.com 0551440114)
         String normalTelephone = "";
-        String[] splitMail = telephone.split(" ");
+        String[] splitMail = mTelephone.split(" ");
 
         for (int i = 0; i < splitMail.length; i++) {
             if(!splitMail[i].contains("@")){

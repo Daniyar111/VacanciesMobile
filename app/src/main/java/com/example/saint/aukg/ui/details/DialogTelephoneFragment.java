@@ -31,6 +31,7 @@ public class DialogTelephoneFragment extends BaseDialogFragment implements Adapt
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        removeDialogToolbar();
         initialize(view);
     }
 

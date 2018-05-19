@@ -1,6 +1,8 @@
 package com.example.saint.aukg.ui;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +11,7 @@ import android.view.View;
 import com.example.saint.aukg.BuildConfig;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.models.TabPagerItem;
+import com.example.saint.aukg.ui.elected.ElectedActivity;
 import com.example.saint.aukg.ui.suitable.SuitableFragment;
 import com.example.saint.aukg.ui.vacancies.VacanciesFragment;
 import com.example.saint.aukg.ui.main.ArrayPagerAdapter;
@@ -32,16 +35,16 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
     protected abstract int getViewLayout();
     protected abstract int getToolbarId();
 
-    private Drawer drawer;
-    private Toolbar toolbar;
-    private AccountHeader header;
-    private ProfileDrawerItem profileDrawerItem;
-    private PrimaryDrawerItem electedDrawerItem, exitDrawerItem;
+    private Drawer mDrawer;
+    private Toolbar mToolbar;
+    private AccountHeader mHeader;
+    private ProfileDrawerItem mProfileDrawerItem;
+    private PrimaryDrawerItem mElectedDrawerItem, mExitDrawerItem;
 
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+    private ViewPager mViewPager;
+    private TabLayout mTabLayout;
 
-    private ArrayList<TabPagerItem> tabs;
+    private ArrayList<TabPagerItem> mTabs;
 
     @Override
     public void setContentView(View view) {
@@ -51,43 +54,43 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
     protected void getDrawer(){
 
-        profileDrawerItem = new ProfileDrawerItem()
+        mProfileDrawerItem = new ProfileDrawerItem()
                 .withName(R.string.vacancy)
                 .withEmail(String.format(getResources().getString(R.string.version), BuildConfig.VERSION_NAME))
                 .withIcon(R.drawable.logo);
 
-        header = new AccountHeaderBuilder()
+        mHeader = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.color.colorPurpleLight)
-                .addProfiles(profileDrawerItem)
+                .addProfiles(mProfileDrawerItem)
                 .withSelectionListEnabledForSingleProfile(false)
                 .build();
 
-        electedDrawerItem = new PrimaryDrawerItem()
+        mElectedDrawerItem = new PrimaryDrawerItem()
                 .withName(R.string.elected)
                 .withIdentifier(1)
                 .withIcon(R.drawable.ic_star_black_24dp);
 
-        exitDrawerItem = new PrimaryDrawerItem()
+        mExitDrawerItem = new PrimaryDrawerItem()
                 .withName(R.string.exit)
                 .withIdentifier(2)
                 .withIcon(R.drawable.ic_exit_to_app_black_24dp);
 
-        drawer = new DrawerBuilder()
+        mDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withOnDrawerItemClickListener(this)
-                .withAccountHeader(header)
+                .withAccountHeader(mHeader)
                 .withSelectedItem(-1)
-                .withToolbar(toolbar)
-                .addDrawerItems(electedDrawerItem, new DividerDrawerItem(), exitDrawerItem)
+                .withToolbar(mToolbar)
+                .addDrawerItems(mElectedDrawerItem, new DividerDrawerItem(), mExitDrawerItem)
                 .build();
 
     }
 
     protected void getToolbar(String title, boolean back){
 
-        toolbar = findViewById(getToolbarId());
-        setSupportActionBar(toolbar);
+        mToolbar = findViewById(getToolbarId());
+        setSupportActionBar(mToolbar);
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle(title);
         }
@@ -96,22 +99,39 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
     protected void getTabLayout(){
 
-        tabs = new ArrayList<>();
+        mTabs = new ArrayList<>();
 
-        tabs.add(new TabPagerItem(new VacanciesFragment(), getResources().getString(R.string.vac_per_day)));
-        tabs.add(new TabPagerItem(new SuitableFragment(), getResources().getString(R.string.suitable)));
+        mTabs.add(new TabPagerItem(new VacanciesFragment(), getResources().getString(R.string.vac_per_day)));
+        mTabs.add(new TabPagerItem(new SuitableFragment(), getResources().getString(R.string.suitable)));
 
-        viewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tabLayout);
+        mViewPager = findViewById(R.id.viewPager);
+        mTabLayout = findViewById(R.id.tabLayout);
 
-        ArrayPagerAdapter adapter = new ArrayPagerAdapter(getSupportFragmentManager(), tabs);
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+        ArrayPagerAdapter adapter = new ArrayPagerAdapter(getSupportFragmentManager(), mTabs);
+        mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
     }
 
     @Override
     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+        switch ((int) drawerItem.getIdentifier()){
+            case 1:
+                Intent intent = new Intent(this, ElectedActivity.class);
+                startActivity(intent);
+                break;
+            case 2:
+                finish();
+                break;
+        }
         return false;
+    }
+
+    protected void switchFragment(Fragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit();
     }
 }

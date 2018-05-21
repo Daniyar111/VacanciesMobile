@@ -8,4 +8,5 @@ public class Constants {
 
     public static final String BASE_URL = "https://au.kg/";
     public static final String MOBILE_API = "mobile-api.php";
+    public static final int REQUEST_PHONE_CALL = 1;
 }

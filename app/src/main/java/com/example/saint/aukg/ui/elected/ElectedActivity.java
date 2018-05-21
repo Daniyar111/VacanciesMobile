@@ -1,17 +1,20 @@
 package com.example.saint.aukg.ui.elected;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.db.SQLiteHelper;
+import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseActivity;
+
+import java.util.ArrayList;
 
 public class ElectedActivity extends BaseActivity {
 
     private SQLiteHelper mSQLiteHelper;
+    private ArrayList<VacancyModel> mVacancyModels;
 
     @Override
     protected int getViewLayout() {
@@ -31,9 +34,13 @@ public class ElectedActivity extends BaseActivity {
         getToolbar(getResources().getString(R.string.elected), true);
 
         mSQLiteHelper = AuApplication.get(getApplicationContext()).getSQLiteHelper();
-
-//        if(mSQLiteHelper)
-        switchFragment(new ElectedFragment());
+        mVacancyModels = mSQLiteHelper.getElectedVacancies();
+        if(mVacancyModels.size() == 0){
+            switchFragment(new EmptyFragment());
+        }
+        else{
+            switchFragment(new ElectedFragment());
+        }
     }
 
     @Override

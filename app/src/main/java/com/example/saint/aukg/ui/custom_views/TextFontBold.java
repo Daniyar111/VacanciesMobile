@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.fonts;
+package com.example.saint.aukg.ui.custom_views;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,29 +9,28 @@ import android.util.AttributeSet;
  * Created by saint on 15.04.2018.
  */
 
-public class TextFontLight extends AppCompatTextView{
+public class TextFontBold extends AppCompatTextView{
 
-    public TextFontLight(Context context) {
+    public TextFontBold(Context context) {
         super(context);
         init();
     }
 
-    public TextFontLight(Context context, AttributeSet attrs) {
+    public TextFontBold(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextFontLight(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TextFontBold(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-
 
     private void init(){
 
         if(!isInEditMode()){
 
-            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
+            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Bold.ttf");
             setTypeface(typeface);
         }
     }

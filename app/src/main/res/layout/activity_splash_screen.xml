@@ -8,11 +8,11 @@
 
         <ImageView style="@style/SplashScreenImageLogoTheme" />
 
-        <com.example.saint.aukg.ui.fonts.TextFontLight
+        <com.example.saint.aukg.ui.custom_views.TextFontLight
             style="@style/SplashScreenTextTheme"
             android:text="@string/aukg" />
 
-        <com.example.saint.aukg.ui.fonts.TextFontLight
+        <com.example.saint.aukg.ui.custom_views.TextFontLight
             style="@style/SplashScreenTextTheme"
             android:text="@string/vacancy" />
 

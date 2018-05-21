@@ -17,10 +17,11 @@ import java.util.ArrayList;
 
 public class DialogTelephoneFragment extends BaseDialogFragment implements AdapterView.OnItemClickListener {
 
-    private ListView listViewTelephone;
-    private TelephoneAdapter telephoneAdapter;
-    private ArrayList<String> telephones = new ArrayList<>();
-    private String telephone;
+    private ListView mListViewTelephone;
+    private TelephoneAdapter mTelephoneAdapter;
+    private ArrayList<String> mTelephones = new ArrayList<>();
+    private String mTelephone;
+    private Intent mIntentDial;
 
     @Override
     protected int getViewLayout() {
@@ -31,35 +32,35 @@ public class DialogTelephoneFragment extends BaseDialogFragment implements Adapt
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        removeDialogToolbar();
+        removeDialogToolbarAndSetAnimation();
         initialize(view);
     }
 
     private void initialize(View view){
-        listViewTelephone = view.findViewById(R.id.listViewTelephone);
-        telephoneAdapter = new TelephoneAdapter(getContext(), bundleTelephone());
-        listViewTelephone.setAdapter(telephoneAdapter);
-        listViewTelephone.setOnItemClickListener(this);
+        mListViewTelephone = view.findViewById(R.id.listViewTelephone);
+        mTelephoneAdapter = new TelephoneAdapter(getContext(), bundleTelephone());
+        mListViewTelephone.setAdapter(mTelephoneAdapter);
+        mListViewTelephone.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        telephone = (String) parent.getItemAtPosition(position);
-        parseIntent(telephone);
+        mTelephone = (String) parent.getItemAtPosition(position);
+        dialPhone(mTelephone);
     }
 
     private ArrayList<String> bundleTelephone(){
         Bundle bundle = this.getArguments();
         if(bundle != null){
-            telephones = bundle.getStringArrayList("telephones");
+            mTelephones = bundle.getStringArrayList("telephones");
         }
-        return telephones;
+        return mTelephones;
     }
 
-    private void parseIntent(String tel){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + tel));
-        startActivity(intent);
+    private void dialPhone(String tel){
+        mIntentDial = new Intent(Intent.ACTION_DIAL);
+        mIntentDial.setData(Uri.parse("tel:" + tel));
+        startActivity(mIntentDial);
     }
 }

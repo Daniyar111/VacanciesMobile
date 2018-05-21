@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
@@ -40,22 +39,11 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
             mSearchButtonsModel = mSQLiteHelper.getRadioButtons();
         }
 
-        removeDialogToolbar();
+        removeDialogToolbarAndSetAnimation();
         initialize(view);
 
-
-        if(mSQLiteHelper != null && mCheckedRadioButtonRegime != null && mCheckedRadioButtonSalary != null){
-
-//            mCheckedRadioButtonRegime = mSearchButtonsModel.getRegime();
-
-            mCheckedRadioButtonRegime.setChecked(true);
-            mCheckedRadioButtonSalary.setChecked(true);
-            Toast.makeText(getContext(), "work " + mCheckedRadioButtonRegime.getText() + " " + mCheckedRadioButtonSalary.getText(), Toast.LENGTH_LONG).show();
-        }
-        else{
-            mRadioButtonRegimeAny.setChecked(true);
-            mRadioButtonSalaryAny.setChecked(true);
-        }
+        mRadioButtonRegimeAny.setChecked(true);
+        mRadioButtonSalaryAny.setChecked(true);
     }
 
     private void initialize(View view){
@@ -84,14 +72,13 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
 
         switch (v.getId()){
             case R.id.buttonReset:
-
                 resetButtons();
                 break;
 
             case R.id.buttonSearch:
-
                 Intent intent = new Intent(getContext(), SearchActivity.class);
                 startActivity(intent);
+                dismiss();
                 break;
         }
     }
@@ -112,7 +99,6 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
             if((group.getCheckedRadioButtonId() != -1) && mFlagRegime){
                 mFlagRegime = false;
                 mRadioGroupRegimeSecond.clearCheck();
-
                 mCheckedRadioButtonRegime = group.findViewById(checkedId);
             }
             else{
@@ -128,7 +114,6 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
             if((group.getCheckedRadioButtonId() != -1) && mFlagRegime){
                 mFlagRegime = false;
                 mRadioGroupRegimeFirst.clearCheck();
-
                 mCheckedRadioButtonRegime = group.findViewById(checkedId);
             }
             else{
@@ -144,7 +129,6 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
             if((group.getCheckedRadioButtonId() != -1) && mFlagSalary){
                 mFlagSalary = false;
                 mRadioGroupSalarySecond.clearCheck();
-
                 mCheckedRadioButtonSalary = group.findViewById(checkedId);
             }
             else {
@@ -160,7 +144,6 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
             if((group.getCheckedRadioButtonId() != -1) && mFlagSalary){
                 mFlagSalary = false;
                 mRadioGroupSalaryFirst.clearCheck();
-
                 mCheckedRadioButtonSalary = group.findViewById(checkedId);
             }
             else {
@@ -173,12 +156,8 @@ public class DialogSearchFragment extends BaseDialogFragment implements View.OnC
     public void onPause() {
         super.onPause();
 
-        new Thread(new Runnable() {
-            public void run() {
-                mSearchButtonsModel.setRegime(mCheckedRadioButtonRegime.getText().toString());
-                mSearchButtonsModel.setSalary(mCheckedRadioButtonSalary.getText().toString());
-                mSQLiteHelper.saveRadioButtons(mSearchButtonsModel);
-            }
-        }).start();
+        mSearchButtonsModel.setRegime(mCheckedRadioButtonRegime.getText().toString());
+        mSearchButtonsModel.setSalary(mCheckedRadioButtonSalary.getText().toString());
+        mSQLiteHelper.saveRadioButtons(mSearchButtonsModel);
     }
 }

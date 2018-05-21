@@ -12,8 +12,6 @@ import com.example.saint.aukg.data.models.VacancyModel;
 
 import java.util.ArrayList;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-
 public class SQLiteHelper extends SQLiteOpenHelper{
 
     /**
@@ -30,8 +28,6 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     private static final String TABLE_ELECTED = "TABLE_ELECTED";
     private static final String TABLE_WATCHED = "TABLE_WATCHED";
     private static final String TABLE_SEARCH = "TABLE_SEARCH";
-    private static final String TABLE_INTENT = "TABLE_INTENT";
-    private static final String TABLE_POSITION = "TABLE_POSITION";
 
     private static final String ID = "_id";
 
@@ -42,8 +38,8 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     private static final String HEADER = "HEADER";
     private static final String SALARY = "SALARY";
     private static final String CHECKBOX_ELECTED = "CHECKBOX_ELECTED";
-    private static final String WATCHED = "WATCHED";
     private static final String PROFILE = "PROFILE";
+    private static final String WATCHED = "WATCHED";
     private static final String SITE_ADDRESS = "SITE_ADDRESS";
     private static final String TELEPHONE = "TELEPHONE";
     private static final String BODY = "BODY";
@@ -78,6 +74,14 @@ public class SQLiteHelper extends SQLiteOpenHelper{
             TABLE_ELECTED + "(" +
             ID + " INTEGER_PRIMARY_KEY, " +
             PID + " TEXT, " +
+            PROFILE + " TEXT, " +
+            PROFESSION + " TEXT, " +
+            DATE + " TEXT, " +
+            HEADER + " TEXT, " +
+            SALARY + " TEXT, " +
+            SITE_ADDRESS + " TEXT, " +
+            TELEPHONE + " TEXT, " +
+            BODY + " TEXT, " +
             CHECKBOX_ELECTED + " INTEGER DEFAULT 0);";
 
     // Creating search table
@@ -86,20 +90,6 @@ public class SQLiteHelper extends SQLiteOpenHelper{
             ID + " INTEGER_PRIMARY_KEY, " +
             REGIME_SEARCH + " TEXT, " +
             SALARY_SEARCH + " TEXT);";
-
-    // Creating detail vacancies table (intent)
-    private static final String CREATE_TABLE_INTENT = "CREATE TABLE IF NOT EXISTS " +
-            TABLE_INTENT + "(" +
-            ID + " INTEGER_PRIMARY_KEY, " +
-            PID + " TEXT, " +
-            PROFILE + " TEXT, " +
-            PROFESSION + " TEXT, " +
-            DATE + " TEXT, " +
-            HEADER + " TEXT, " +
-            SALARY + " TEXT, " +
-            SITE_ADDRESS + " TEXT, " +
-            TELEPHONE + " TEXT, " +
-            BODY + " TEXT);";
 
     public SQLiteHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -111,7 +101,6 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_TABLE_ELECTED);
         db.execSQL(CREATE_TABLE_SEARCH);
         db.execSQL(CREATE_TABLE_WATCHED);
-        db.execSQL(CREATE_TABLE_INTENT);
     }
 
     @Override
@@ -120,9 +109,10 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ELECTED);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SEARCH);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WATCHED);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INTENT);
         onCreate(db);
     }
+
+    // Start of list without Internet
 
     public void saveListWithoutInternet(ArrayList<VacancyModel> vacancyModels){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -190,18 +180,41 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         return vacancyModels;
     }
 
+    // End of list without Internet
+
+    // Start of watched vacancies
+
     public void saveWatchedVacancy(String pid, boolean watched){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(PID, pid);
         cv.put(WATCHED, watched);
-        Log.d("SAVE", "watched: " + watched);
+
         db.insert(TABLE_WATCHED, null, cv);
         db.close();
     }
 
-    public boolean getWatchedVacancy(String pid){
+    public ArrayList<String> getWatchedVacancies(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<String> arrayList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_WATCHED, null, null, null, null, null, null);
+
+        if(cursor.moveToFirst()){
+            int pidIndex = cursor.getColumnIndex(PID);
+            do{
+                String pid = cursor.getString(pidIndex);
+                arrayList.add(pid);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return arrayList;
+    }
+
+    public boolean isWatchedVacancy(String pid){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_WATCHED, null, PID + "='" + pid + "'", null, null, null, null);
 
@@ -209,11 +222,10 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             int watchedIndex = cursor.getColumnIndex(WATCHED);
             do{
-                String watched = cursor.getString(watchedIndex);
-                if (watched.equals("1")){
+                String elected = cursor.getString(watchedIndex);
+                if(elected.equals("1")){
                     isWatched = true;
                 }
-                Log.d("GET_WATCHED", "pid: " + pid + " " + watched);
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -221,11 +233,23 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         return isWatched;
     }
 
-    public void saveElectedVacancy(String pid, boolean elected){
+    // End of watched vacancies
+
+    // Start of elected vacancies
+
+    public void saveElectedVacancy(VacancyModel vacancyModel, boolean elected){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(PID, pid);
+        cv.put(PID, vacancyModel.getPid());
+        cv.put(PROFESSION, vacancyModel.getProfession());
+        cv.put(DATE, vacancyModel.getData());
+        cv.put(HEADER, vacancyModel.getHeader());
+        cv.put(SALARY, vacancyModel.getSalary());
+        cv.put(PROFILE, vacancyModel.getProfile());
+        cv.put(SITE_ADDRESS, vacancyModel.getSiteAddress());
+        cv.put(TELEPHONE, vacancyModel.getTelephone());
+        cv.put(BODY, vacancyModel.getBody());
         cv.put(CHECKBOX_ELECTED, elected);
         Log.d("SAVE", "elected: " + elected);
         db.insert(TABLE_ELECTED, null, cv);
@@ -301,6 +325,10 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         db.close();
     }
 
+    // End of elected vacancies
+
+    // Start of radio buttons
+
     public void saveRadioButtons(SearchButtonsModel searchButtonsModel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -335,69 +363,5 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         return searchButtonsModel;
     }
 
-    public void saveVacanciesForDetails(ArrayList<VacancyModel> vacancyModels){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        db.delete(TABLE_INTENT, null, null);
-
-        for (int i = 0; i < vacancyModels.size(); i++) {
-            VacancyModel vacancyModel = vacancyModels.get(i);
-            cv.put(PID, vacancyModel.getPid());
-            cv.put(PROFESSION, vacancyModel.getProfession());
-            cv.put(DATE, vacancyModel.getData());
-            cv.put(HEADER, vacancyModel.getHeader());
-            cv.put(SALARY, vacancyModel.getSalary());
-            cv.put(PROFILE, vacancyModel.getProfile());
-            cv.put(SITE_ADDRESS, vacancyModel.getSiteAddress());
-            cv.put(TELEPHONE, vacancyModel.getTelephone());
-            cv.put(BODY, vacancyModel.getBody());
-            db.insert(TABLE_INTENT, null, cv);
-        }
-        db.close();
-    }
-
-    public ArrayList<VacancyModel> getVacanciesForDetails(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<VacancyModel> vacancyModels = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_INTENT, null, null, null, null, null, null);
-
-        if(cursor.moveToFirst()){
-            int pidIndex = cursor.getColumnIndex(PID);
-            int professionIndex = cursor.getColumnIndex(PROFESSION);
-            int dateIndex = cursor.getColumnIndex(DATE);
-            int headerIndex = cursor.getColumnIndex(HEADER);
-            int salaryIndex = cursor.getColumnIndex(SALARY);
-            int profileIndex = cursor.getColumnIndex(PROFILE);
-            int siteAddressIndex = cursor.getColumnIndex(SITE_ADDRESS);
-            int telephoneIndex = cursor.getColumnIndex(TELEPHONE);
-            int bodyIndex = cursor.getColumnIndex(BODY);
-            do{
-                VacancyModel vacancyModel = new VacancyModel();
-                String pid = cursor.getString(pidIndex);
-                String profession = cursor.getString(professionIndex);
-                String date = cursor.getString(dateIndex);
-                String header = cursor.getString(headerIndex);
-                String salary = cursor.getString(salaryIndex);
-                String profile = cursor.getString(profileIndex);
-                String siteAddress = cursor.getString(siteAddressIndex);
-                String telephone = cursor.getString(telephoneIndex);
-                String body = cursor.getString(bodyIndex);
-                vacancyModel.setPid(pid);
-                vacancyModel.setProfession(profession);
-                vacancyModel.setData(date);
-                vacancyModel.setHeader(header);
-                vacancyModel.setSalary(salary);
-                vacancyModel.setProfile(profile);
-                vacancyModel.setSiteAddress(siteAddress);
-                vacancyModel.setTelephone(telephone);
-                vacancyModel.setBody(body);
-                vacancyModels.add(vacancyModel);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-
-        return vacancyModels;
-    }
+    // End of radio buttons
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.example.saint.aukg.R;
+
 public abstract class BaseDialogFragment extends DialogFragment{
 
     protected abstract int getViewLayout();
@@ -22,9 +24,10 @@ public abstract class BaseDialogFragment extends DialogFragment{
         return view;
     }
 
-    protected void removeDialogToolbar(){
+    protected void removeDialogToolbarAndSetAnimation(){
         if(getDialog().getWindow() != null){
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogFragmentAnimation;
         }
     }
 }

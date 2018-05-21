@@ -85,6 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
                 .addDrawerItems(mElectedDrawerItem, new DividerDrawerItem(), mExitDrawerItem)
                 .build();
 
+
     }
 
     protected void getToolbar(String title, boolean back){
@@ -118,8 +119,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
         switch ((int) drawerItem.getIdentifier()){
             case 1:
+
                 Intent intent = new Intent(this, ElectedActivity.class);
                 startActivity(intent);
+
                 break;
             case 2:
                 finish();

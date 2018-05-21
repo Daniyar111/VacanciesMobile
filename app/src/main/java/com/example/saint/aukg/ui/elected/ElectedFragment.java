@@ -1,6 +1,7 @@
 package com.example.saint.aukg.ui.elected;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,13 +9,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
+import com.example.saint.aukg.data.db.SQLiteHelper;
+import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseFragment;
+import com.example.saint.aukg.ui.details.DetailsActivity;
+import com.example.saint.aukg.ui.MainVacanciesAdapter;
+import com.example.saint.aukg.ui.vacancies.VacanciesAdapterCallback;
 
-public class ElectedFragment extends BaseFragment {
+import java.util.ArrayList;
+
+public class ElectedFragment extends BaseFragment implements VacanciesAdapterCallback{
 
     private Context mContext;
     private RecyclerView mRecyclerView;
+    private SQLiteHelper mSQLiteHelper;
+    private ArrayList<VacancyModel> mVacancyModels = new ArrayList<>();
+    private MainVacanciesAdapter mAdapter;
 
     @Override
     protected int getViewLayout() {
@@ -28,6 +40,7 @@ public class ElectedFragment extends BaseFragment {
         if(getActivity() != null){
             mContext = getActivity().getApplicationContext();
         }
+        mSQLiteHelper = AuApplication.get(mContext).getSQLiteHelper();
 
         getRecyclerView(view);
     }
@@ -39,4 +52,25 @@ public class ElectedFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onVacancyClicked(ArrayList<VacancyModel> vacancyModels, int position) {
+
+        Intent intent = new Intent(mContext, DetailsActivity.class);
+        intent.putParcelableArrayListExtra("vacancy_models", vacancyModels);
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getVacancies();
+    }
+
+    private void getVacancies(){
+        mVacancyModels = mSQLiteHelper.getElectedVacancies();
+        mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, ElectedFragment.this, false);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 }

@@ -16,7 +16,7 @@
                     style="@style/VerticalLinearLayoutTheme"
                     android:padding="@dimen/padding_fifteen">
 
-                    <com.example.saint.aukg.ui.fonts.TextFontBold
+                    <com.example.saint.aukg.ui.custom_views.TextFontBold
                         android:id="@+id/textViewHeader"
                         style="@style/DetailsTextFontBoldTheme" />
 
@@ -38,7 +38,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1">
-                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                <com.example.saint.aukg.ui.custom_views.TextFontLight
                                     android:id="@+id/textViewProfile"
                                     style="@style/VacanciesTextFontLightTheme"
                                     android:layout_centerInParent="true"/>
@@ -48,7 +48,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2">
-                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                <com.example.saint.aukg.ui.custom_views.TextFontLight
                                     android:id="@+id/textViewDate"
                                     style="@style/VacanciesTextDateTheme"/>
                             </RelativeLayout>
@@ -72,7 +72,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                <com.example.saint.aukg.ui.custom_views.TextFontLight
                                     android:id="@+id/textViewSalary"
                                     style="@style/VacanciesTextFontSalaryTheme"
                                     android:layout_centerInParent="true"/>
@@ -81,7 +81,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                <com.example.saint.aukg.ui.custom_views.TextFontLight
                                     android:id="@+id/textViewSiteAddress"
                                     style="@style/VacanciesTextSiteTheme"/>
                             </RelativeLayout>
@@ -106,7 +106,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                                <com.example.saint.aukg.ui.fonts.TextFontLight
+                                <com.example.saint.aukg.ui.custom_views.TextFontLight
                                     android:id="@+id/textViewTelephone"
                                     style="@style/VacanciesTextFontTelephoneTheme"
                                     android:layout_centerInParent="true"/>
@@ -126,7 +126,7 @@
 
                     </RelativeLayout>
 
-                    <com.example.saint.aukg.ui.fonts.TextFontLight
+                    <com.example.saint.aukg.ui.custom_views.TextFontLight
                         android:id="@+id/textViewBody"
                         style="@style/VacanciesTextBodyTheme" />
 

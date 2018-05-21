@@ -1,4 +1,4 @@
-package com.example.saint.aukg.ui.vacancies;
+package com.example.saint.aukg.ui;
 
 
 import android.annotation.SuppressLint;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.db.SQLiteHelper;
 import com.example.saint.aukg.data.models.VacancyModel;
+import com.example.saint.aukg.ui.vacancies.VacanciesAdapterCallback;
+import com.example.saint.aukg.utils.AndroidUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,15 +40,15 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     private VacanciesAdapterCallback mCallback;
     private SQLiteHelper mSQLiteHelper;
     private Context mContext;
-    private ArrayList<VacancyModel> mVacancyModels;
-
+    private boolean mIsWatched;
     private Set<Integer> mCheckBoxSet = new HashSet<>();
     private Set<Integer> mWatchedSet = new HashSet<>();
 
-    public MainVacanciesAdapter(Context context, ArrayList<VacancyModel> arrayList, VacanciesAdapterCallback callback){
+    public MainVacanciesAdapter(Context context, ArrayList<VacancyModel> arrayList, VacanciesAdapterCallback callback, boolean isWatched){
         mContext = context;
         mArrayList = arrayList;
         mCallback = callback;
+        mIsWatched = isWatched;
     }
 
     @NonNull
@@ -66,77 +66,32 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
 
         mVacancyModel = mArrayList.get(position);
 
-        setTextViewProfession(holder);
-        holder.mTextViewDate.setText(formatTextViewDate(mVacancyModel.getData()));
-        holder.mTextViewHeader.setText(mVacancyModel.getHeader());
-        setTextViewSalary(holder);
+        updateData(holder, mVacancyModel);
 
-        holder.mCheckBoxElected.setOnCheckedChangeListener(null);
-
-        holder.mCheckBoxElected.setChecked(mCheckBoxSet.contains(position));
-        holder.mCheckBoxElected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mCheckBoxSet.add(position);
-                } else {
-                    mCheckBoxSet.remove(position);
-                }
-            }
-        });
-
-        if(mSQLiteHelper.getElectedVacancy(mVacancyModel.getPid())){
-
-            holder.mCheckBoxElected.setChecked(true);
-        }
+        checkBoxController(holder, position);
 
         holder.mCheckBoxElected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(holder.mCheckBoxElected.isChecked()){
-                    mSQLiteHelper.saveElectedVacancy(mVacancyModel.getPid(),true);
-                    Toast.makeText(mContext, "Added to db " + mVacancyModel.getProfession(), Toast.LENGTH_LONG).show();
+                    mSQLiteHelper.saveElectedVacancy(mArrayList.get(position),true);
+                    AndroidUtils.showLongToast(mContext, mContext.getResources().getString(R.string.added_to_elected));
                 }
                 else{
-                    mSQLiteHelper.deleteElectedVacancy(mVacancyModel.getPid());
-                    Toast.makeText(mContext, "Deleted from db " + mVacancyModel.getProfession(), Toast.LENGTH_LONG).show();
+                    mSQLiteHelper.deleteElectedVacancy(mArrayList.get(position).getPid());
+                    AndroidUtils.showLongToast(mContext, mContext.getResources().getString(R.string.deleted_from_elected));
                 }
             }
         });
 
-        holder.mRelativeWatched.setOnFocusChangeListener(null);
-
-        holder.mRelativeWatched.setVisibility(mWatchedSet.contains(position) ? View.VISIBLE : View.GONE);
-        if(mSQLiteHelper.getWatchedVacancy(mVacancyModel.getPid())){
-
-            holder.mRelativeWatched.setVisibility(View.VISIBLE);
-            Log.d("CAME", "CAME");
-            Toast.makeText(mContext, "adapter is " + mVacancyModel.getProfession(), Toast.LENGTH_LONG).show();
+        if(mIsWatched){
+            relativeWatchedController(holder, position);
         }
-
-        holder.mRelativeWatched.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    mWatchedSet.add(position);
-                }
-                else{
-                    mWatchedSet.remove(position);
-                }
-            }
-        });
 
         holder.mCardViewVacancy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 mCallback.onVacancyClicked(mArrayList, position);
-
-                new Thread(new Runnable() {
-                    public void run() {
-                        mSQLiteHelper.saveWatchedVacancy(mVacancyModel.getPid(), true);
-                    }
-                }).start();
             }
         });
     }
@@ -163,6 +118,52 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
             mRelativeWatched = view.findViewById(R.id.relativeWatched);
             mCardViewVacancy = view.findViewById(R.id.cardViewVacancy);
         }
+    }
+
+    private void updateData(ViewHolder holder, VacancyModel vacancyModel){
+        setTextViewProfession(holder);
+        holder.mTextViewDate.setText(formatTextViewDate(vacancyModel.getData()));
+        holder.mTextViewHeader.setText(vacancyModel.getHeader());
+        setTextViewSalary(holder);
+    }
+
+    private void checkBoxController(ViewHolder holder, final int position){
+        holder.mCheckBoxElected.setOnCheckedChangeListener(null);
+        holder.mCheckBoxElected.setChecked(mCheckBoxSet.contains(position));
+        holder.mCheckBoxElected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckBoxSet.add(position);
+                } else {
+                    mCheckBoxSet.remove(position);
+                }
+            }
+        });
+        if(mSQLiteHelper.getElectedVacancy(mVacancyModel.getPid())){
+
+            holder.mCheckBoxElected.setChecked(true);
+        }
+    }
+
+    private void relativeWatchedController(ViewHolder holder, final int position){
+        holder.mRelativeWatched.setOnFocusChangeListener(null);
+        holder.mRelativeWatched.setVisibility(mWatchedSet.contains(position) ? View.VISIBLE : View.GONE);
+        if(mSQLiteHelper.isWatchedVacancy(mArrayList.get(position).getPid())){
+
+            holder.mRelativeWatched.setVisibility(View.VISIBLE);
+        }
+        holder.mRelativeWatched.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    mWatchedSet.add(position);
+                }
+                else{
+                    mWatchedSet.remove(position);
+                }
+            }
+        });
     }
 
     private void setTextViewProfession(ViewHolder viewHolder){
@@ -198,5 +199,4 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
         }
         return output;
     }
-
 }

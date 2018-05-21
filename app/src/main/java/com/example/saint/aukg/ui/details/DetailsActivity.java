@@ -1,21 +1,28 @@
 package com.example.saint.aukg.ui.details;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.saint.aukg.AuApplication;
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.data.db.SQLiteHelper;
 import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseActivity;
+import com.example.saint.aukg.utils.AndroidUtils;
+import com.example.saint.aukg.utils.Constants;
+import com.example.saint.aukg.utils.PermissionUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,10 +30,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class DetailsActivity extends BaseActivity implements View.OnClickListener {
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_NEUTRAL;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+
+public class DetailsActivity extends BaseActivity implements View.OnClickListener, DialogInterface.OnClickListener {
 
     private TextView mTextViewHeader, mTextViewProfile, mTextViewDate, mTextViewSalary, mTextViewSiteAddress, mTextViewTelephone, mTextViewBody;
     private LinearLayout mButtonPrevious, mButtonNext;
+    private CheckBox mCheckBoxElected;
     private RelativeLayout mButtonCall;
     private FrameLayout mFrameLayoutPrevious, mFrameLayoutNext;
     private TextView mTextViewPrevious, mTextViewNext;
@@ -36,7 +48,8 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     private int mPosition;
     private ArrayList<String> mTelephones;
     private String mTelephone, mVacancyTelephone;
-
+    private SQLiteHelper mSQLiteHelper;
+    private Intent mIntentCall, mIntentDial;
 
     @Override
     protected int getViewLayout() {
@@ -55,15 +68,11 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         getToolbar(getResources().getString(R.string.vacancies), true);
 
+        mSQLiteHelper = AuApplication.get(getApplicationContext()).getSQLiteHelper();
+
         initialize();
 
-        if(getIntent() != null){
-
-            mVacancyModels = getIntent().getParcelableArrayListExtra("vacancy_models");
-            mPosition = getIntent().getIntExtra("position", 0);
-
-            updateData();
-        }
+        getIntentData();
 
         showButtons();
     }
@@ -84,7 +93,6 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
 
         switch (v.getId()){
-
             case R.id.buttonPrevious:
                 previousVacancy();
                 break;
@@ -107,6 +115,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         mTextViewSiteAddress = findViewById(R.id.textViewSiteAddress);
         mTextViewTelephone = findViewById(R.id.textViewTelephone);
         mTextViewBody = findViewById(R.id.textViewBody);
+        mCheckBoxElected = findViewById(R.id.checkBoxElected);
 
         mFrameLayoutPrevious = findViewById(R.id.frameLayoutPrevious);
         mFrameLayoutNext = findViewById(R.id.frameLayoutNext);
@@ -123,26 +132,60 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void showButtons(){
-        if(mPosition == 0){
-            mFrameLayoutPrevious.setVisibility(View.INVISIBLE);
-            mTextViewPrevious.setVisibility(View.INVISIBLE);
-            mButtonPrevious.setClickable(false);
-            return;
+
+        if(mVacancyModels.size() == 2){
+            if(mPosition == 0){
+                setInvisiblePrevious();
+                setVisibleNext();
+                return;
+            }
+
+            if(mPosition == 1){
+                setVisiblePrevious();
+                setInvisibleNext();
+            }
         }
-        if(mPosition == mVacancyModels.size() - 1){
-            mFrameLayoutNext.setVisibility(View.INVISIBLE);
-            mTextViewNext.setVisibility(View.INVISIBLE);
-            mButtonNext.setClickable(false);
+        else if(mVacancyModels.size() == 1){
+            setInvisiblePrevious();
+            setInvisibleNext();
         }
         else{
-            mFrameLayoutPrevious.setVisibility(View.VISIBLE);
-            mTextViewPrevious.setVisibility(View.VISIBLE);
-            mFrameLayoutNext.setVisibility(View.VISIBLE);
-            mTextViewNext.setVisibility(View.VISIBLE);
-            mButtonPrevious.setClickable(true);
-            mButtonNext.setClickable(true);
+            if(mPosition == 0){
+                setInvisiblePrevious();
+                return;
+            }
+            if(mPosition == mVacancyModels.size() - 1){
+                setInvisibleNext();
+            }
+            else{
+                setVisibleNext();
+                setVisiblePrevious();
+            }
         }
+    }
 
+    private void setInvisiblePrevious(){
+        mFrameLayoutPrevious.setVisibility(View.INVISIBLE);
+        mTextViewPrevious.setVisibility(View.INVISIBLE);
+        mButtonPrevious.setClickable(false);
+    }
+
+    private void setInvisibleNext(){
+        mFrameLayoutNext.setVisibility(View.INVISIBLE);
+        mTextViewNext.setVisibility(View.INVISIBLE);
+        mButtonNext.setClickable(false);
+    }
+
+    private void setVisiblePrevious(){
+        mFrameLayoutPrevious.setVisibility(View.VISIBLE);
+        mTextViewPrevious.setVisibility(View.VISIBLE);
+        mButtonPrevious.setClickable(true);
+    }
+
+    private void setVisibleNext(){
+        mFrameLayoutNext.setVisibility(View.VISIBLE);
+        mTextViewNext.setVisibility(View.VISIBLE);
+        mButtonNext.setClickable(true);
     }
 
     private void updateData(){
@@ -154,6 +197,23 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         mTextViewSiteAddress.setText(mVacancyModel.getSiteAddress());
         setTextViewTelephone();
         mTextViewBody.setText(mVacancyModel.getBody());
+        mSQLiteHelper.saveWatchedVacancy(mVacancyModel.getPid(), true);
+
+        mCheckBoxElected.setChecked(mSQLiteHelper.getElectedVacancy(mVacancyModel.getPid()));
+
+        mCheckBoxElected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCheckBoxElected.isChecked()){
+                    mSQLiteHelper.saveElectedVacancy(mVacancyModel,true);
+                    AndroidUtils.showLongToast(getApplicationContext(), getResources().getString(R.string.added_to_elected));
+                }
+                else{
+                    mSQLiteHelper.deleteElectedVacancy(mVacancyModel.getPid());
+                    AndroidUtils.showLongToast(getApplicationContext(), getResources().getString(R.string.deleted_from_elected));
+                }
+            }
+        });
     }
 
     private void previousVacancy(){
@@ -166,6 +226,14 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         mPosition++;
         showButtons();
         updateData();
+    }
+
+    private void getIntentData(){
+        if(getIntent() != null){
+            mVacancyModels = getIntent().getParcelableArrayListExtra("vacancy_models");
+            mPosition = getIntent().getIntExtra("position", 0);
+            updateData();
+        }
     }
 
     private void setTextViewSalary(){
@@ -230,18 +298,55 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         // if (0551440114 dani.changylov42123@gmail.com) (dani.changylov431@gmail.com 0551440114)
         else if(mTelephone.contains("@") && mTelephone.contains(" ") && !mTelephone.contains(";")){
             mTelephone = divideTelAndMail();
-            parseIntent(mTelephone);
+            callServiceAppPermissionForCalling();
         }
         else{
             mButtonCall.setVisibility(View.VISIBLE);
-            parseIntent(mTelephone);
+            callServiceAppPermissionForCalling();
         }
     }
 
-    private void parseIntent(String tel){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + tel));
-        startActivity(intent);
+    private void callPhone(String tel){
+        mIntentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel));
+        PermissionUtils.getPermissionForCalling(DetailsActivity.this, DetailsActivity.this, mIntentCall);
+    }
+
+    private void dialPhone(String tel){
+        mIntentDial = new Intent(Intent.ACTION_DIAL);
+        mIntentDial.setData(Uri.parse("tel:" + tel));
+        startActivity(mIntentDial);
+    }
+
+    private void callServiceAppPermissionForCalling(){
+
+        new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.ask_permission))
+                .setMessage(getResources().getString(R.string.give_permission))
+                .setCancelable(false)
+                .setPositiveButton(getResources().getString(R.string.call), this)
+                .setNeutralButton(getResources().getString(R.string.just_dial), this)
+                .setNegativeButton(getResources().getString(R.string.no), this)
+                .create()
+                .show();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which){
+            case BUTTON_POSITIVE:
+                callPhone(mTelephone);
+                dialog.dismiss();
+                break;
+
+            case BUTTON_NEUTRAL:
+                dialPhone(mTelephone);
+                dialog.dismiss();
+                break;
+
+            case BUTTON_NEGATIVE:
+                dialog.dismiss();
+                break;
+        }
     }
 
     private ArrayList<String> getListTelephone(){
@@ -283,4 +388,16 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         return normalTelephone;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            case Constants.REQUEST_PHONE_CALL:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    startActivity(mIntentCall);
+                }
+                break;
+        }
+    }
 }

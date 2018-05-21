@@ -13,15 +13,34 @@
             style="@style/VerticalLinearLayoutTheme"
             android:layout_margin="10sp">
 
-            <RelativeLayout style="@style/VacanciesLinearLayoutTheme">
+            <RelativeLayout style="@style/RelativeWrapTheme"
+                android:background="@drawable/border_bottom"
+                android:paddingTop="@dimen/padding_eight"
+                android:paddingBottom="@dimen/padding_fifteen">
 
-                <com.example.saint.aukg.ui.fonts.TextFontBold
-                    android:id="@+id/textViewProfession"
-                    style="@style/VacanciesTextFontBoldTheme" />
+                <LinearLayout
+                    style="@style/VacanciesLinearLayoutHorizontalTheme"
+                    android:weightSum="3">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <com.example.saint.aukg.ui.custom_views.TextFontBold
+                            android:id="@+id/textViewProfession"
+                            style="@style/VacanciesTextFontBoldTheme"
+                            android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+                        <com.example.saint.aukg.ui.custom_views.TextFontLight
+                            android:id="@+id/textViewDate"
+                            style="@style/VacanciesTextFontDateTheme"/>
+                    </RelativeLayout>
+                </LinearLayout>
 
-                <com.example.saint.aukg.ui.fonts.TextFontLight
-                    android:id="@+id/textViewDate"
-                    style="@style/VacanciesTextFontDateTheme"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -33,35 +52,43 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_profile_name" />
 
-                <com.example.saint.aukg.ui.fonts.TextFontLight
+                <com.example.saint.aukg.ui.custom_views.TextFontLight
                     android:id="@+id/textViewHeader"
                     style="@style/VacanciesTextFontHeaderTheme"
                     android:layout_toEndOf="@id/imageProfile"
                     android:layout_toRightOf="@id/imageProfile"/>
             </RelativeLayout>
 
-            <RelativeLayout style="@style/RelativeWrapTheme">
+            <RelativeLayout style="@style/RelativeWrapTheme"
+                android:layout_marginTop="@dimen/margin_five">
 
-                <RelativeLayout
-                    android:id="@+id/relativeSalary"
-                    style="@style/RelativeWrapTheme"
-                    android:layout_marginTop="@dimen/margin_fifteen">
-
-                    <FrameLayout
-                        android:id="@+id/imageSalary"
-                        style="@style/VacanciesFrameImageTheme"
-                        android:background="@drawable/ic_salary" />
-
-                    <com.example.saint.aukg.ui.fonts.TextFontLight
-                        android:id="@+id/textViewSalary"
-                        style="@style/VacanciesTextFontSalaryTheme"
-                        android:layout_toEndOf="@id/imageSalary"
-                        android:layout_toRightOf="@id/imageSalary" />
-                </RelativeLayout>
-
-                <CheckBox
-                    android:id="@+id/checkBoxElected"
-                    style="@style/VacanciesCheckBoxTheme" />
+                <FrameLayout
+                    android:id="@+id/imageSalary"
+                    style="@style/VacanciesFrameImageTheme"
+                    android:background="@drawable/ic_salary" />
+                <LinearLayout
+                    style="@style/VacanciesLinearLayoutHorizontalTheme"
+                    android:layout_toEndOf="@id/imageSalary"
+                    android:layout_toRightOf="@id/imageSalary"
+                    android:weightSum="4">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <com.example.saint.aukg.ui.custom_views.TextFontLight
+                            android:id="@+id/textViewSalary"
+                            style="@style/VacanciesTextFontTelephoneTheme"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+                        <CheckBox
+                            android:id="@+id/checkBoxElected"
+                            style="@style/VacanciesCheckBoxTheme" />
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -74,7 +101,7 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_status_watched" />
 
-                <com.example.saint.aukg.ui.fonts.TextFontLight
+                <com.example.saint.aukg.ui.custom_views.TextFontLight
                     android:id="@+id/textViewWatched"
                     style="@style/VacanciesTextWatchedTheme"
                     android:layout_toEndOf="@id/imageWatched"

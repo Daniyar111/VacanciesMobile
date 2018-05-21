@@ -1,9 +1,7 @@
-package com.example.saint.aukg.ui.vacancies;
+package com.example.saint.aukg.ui.search;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,8 +17,9 @@ import com.example.saint.aukg.data.RetrofitService;
 import com.example.saint.aukg.data.db.SQLiteHelper;
 import com.example.saint.aukg.data.models.VacancyModel;
 import com.example.saint.aukg.ui.BaseFragment;
-import com.example.saint.aukg.ui.MainVacanciesAdapter;
 import com.example.saint.aukg.ui.details.DetailsActivity;
+import com.example.saint.aukg.ui.MainVacanciesAdapter;
+import com.example.saint.aukg.ui.vacancies.VacanciesAdapterCallback;
 import com.example.saint.aukg.utils.AndroidUtils;
 
 import java.util.ArrayList;
@@ -29,11 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by saint on 15.04.2018.
- */
-
-public class VacanciesFragment extends BaseFragment implements VacanciesAdapterCallback, SwipeRefreshLayout.OnRefreshListener {
+public class SearchListFragment extends BaseFragment implements VacanciesAdapterCallback, SwipeRefreshLayout.OnRefreshListener {
 
     private RetrofitService mService;
     private RecyclerView mRecyclerView;
@@ -44,6 +39,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
     private int mPage = 1;
     private FrameLayout mProgressBar;
     private SQLiteHelper mSQLiteHelper;
+    private String mSalary, mTerm;
 
     @Override
     protected int getViewLayout() {
@@ -62,8 +58,9 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
         mSQLiteHelper = AuApplication.get(mContext).getSQLiteHelper();
 
         getRecyclerView(view);
-        setSwipyRefreshLayout(view);
-        internetChecking();
+        setSwipeRefreshLayout(view);
+        getVacancies();
+
     }
 
     private void getRecyclerView(View view){
@@ -72,7 +69,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private void setSwipyRefreshLayout(View view){
+    private void setSwipeRefreshLayout(View view){
 
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -82,20 +79,19 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
 
         mProgressBar.setVisibility(View.VISIBLE);
 
+        mSalary = mSQLiteHelper.getRadioButtons().getSalary();
+        mTerm = mSQLiteHelper.getRadioButtons().getRegime();
+
         mService = AuApplication.get(mContext).getService();
-        mService.postVacancies("au", "get_all_vacancies", "20", String.valueOf(mPage))
+        mService.postSearchingVacancies("au", "get_post_by_filter", "30", String.valueOf(mPage), mSalary, mTerm)
                 .enqueue(new Callback<ArrayList<VacancyModel>>() {
                     @Override
-                    public void onResponse(@NonNull Call<ArrayList<VacancyModel>> call, @NonNull Response<ArrayList<VacancyModel>> response) {
+                    public void onResponse(@NonNull Call<ArrayList<VacancyModel>> call, @NonNull final Response<ArrayList<VacancyModel>> response) {
 
                         if(response.isSuccessful() && response.body() != null){
 
-                            if(mPage == 1){
-                                mSQLiteHelper.saveListWithoutInternet(response.body());
-                            }
-
                             mVacancyModels.addAll(response.body());
-                            mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, VacanciesFragment.this, true);
+                            mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, SearchListFragment.this, true);
                             mRecyclerView.setAdapter(mAdapter);
                         }
                         mProgressBar.setVisibility(View.GONE);
@@ -110,30 +106,13 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
                 });
     }
 
-    private void internetChecking(){
-        ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(manager != null){
-            NetworkInfo info = manager.getActiveNetworkInfo();
-            if(info != null && info.isConnected()){
-                getVacancies();
-
-            }
-            else {
-                if(mVacancyModels != null && mSQLiteHelper.getListWithoutInternet() != null){
-                    mVacancyModels = mSQLiteHelper.getListWithoutInternet();
-                    mAdapter = new MainVacanciesAdapter(mContext, mVacancyModels, VacanciesFragment.this, true);
-                    mRecyclerView.setAdapter(mAdapter);
-                }
-                AndroidUtils.showLongToast(mContext, getResources().getString(R.string.no_internet));
-            }
-        }
-    }
-
     @Override
-    public void onRefresh() {
-        mPage++;
-        getVacancies();
-        mSwipeRefreshLayout.setRefreshing(false);
+    public void onVacancyClicked(final ArrayList<VacancyModel> vacancyModels, final int position) {
+
+        Intent intent = new Intent(mContext, DetailsActivity.class);
+        intent.putParcelableArrayListExtra("vacancy_models", vacancyModels);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     @Override
@@ -145,11 +124,10 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
     }
 
     @Override
-    public void onVacancyClicked(ArrayList<VacancyModel> vacancyModels, int position) {
-        Intent intent = new Intent(mContext, DetailsActivity.class);
-        intent.putParcelableArrayListExtra("vacancy_models", vacancyModels);
-        intent.putExtra("position", position);
-
-        startActivity(intent);
+    public void onRefresh() {
+        mPage++;
+        getVacancies();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
+

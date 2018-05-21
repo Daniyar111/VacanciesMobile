@@ -2,18 +2,26 @@
     <string name="app_name">AUKG</string>
 
     <string name="about_us">О нас</string>
+    <string name="added_to_elected">Добавлено в избранное</string>
     <string name="any">Любой</string>
+    <string name="ask_permission">Требуется разрешение позвонить</string>
     <string name="aukg">AU.kg</string>
     <string name="cancel">Отмена</string>
     <string name="call">Позвонить</string>
+    <string name="deleted_from_elected">Удалено из избранных</string>
     <string name="enter_for_searching">Введите для поиска…</string>
     <string name="exit">Выход</string>
     <string name="elected">Избранные вакансии</string>
+    <string name="empty_list">Список избранных пуст</string>
     <string name="five_thousand">5 000 +</string>
     <string name="flexible">Гибкий</string>
     <string name="full">Полный день</string>
+    <string name="give_permission">Предоставить приложению права для выполнении этой функции</string>
+    <string name="just_dial">Только набрать</string>
     <string name="next">Следующее</string>
     <string name="night">Ночной</string>
+    <string name="no">Нет</string>
+    <string name="no_internet">Нет интернет подключения</string>
     <string name="previous">Предыдущее</string>
     <string name="ready">Готово</string>
     <string name="regime">Режим работы</string>
@@ -25,8 +33,10 @@
     <string name="ten_thousand">10 000 +</string>
     <string name="thirty_thousand">30 000 +</string>
     <string name="treaty">Договорная</string>
+    <string name="undefined">Не указан</string>
+    <string name="vacancies">Вакансии</string>
     <string name="vacancy">Все вакансии Кыргызстана</string>
     <string name="vac_per_day">Вакансии за сутки</string>
-    <string name="version">Версия: </string>
+    <string name="version">Версия: %s</string>
     <string name="watched">Просмотрено</string>
 </resources>

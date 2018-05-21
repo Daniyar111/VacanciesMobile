@@ -3,18 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.saint.aukg.ui.fonts.TextFontBold
+    <com.example.saint.aukg.ui.custom_views.TextFontBold
         android:id="@+id/textViewRegime"
         style="@style/DialogTextTheme"
         android:text="@string/regime" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupRegime"
+    <LinearLayout
+        android:id="@+id/linearRegime"
         style="@style/DialogRadioGroupTheme"
-        android:layout_below="@id/textViewRegime"
-        android:weightSum="4">
+        android:layout_below="@id/textViewRegime">
 
-        <LinearLayout style="@style/DialogLinearLayoutTheme">
+        <RadioGroup
+            android:id="@+id/radioGroupRegimeFirst"
+            style="@style/DialogLinearLayoutTheme">
 
             <RadioButton
                 android:id="@+id/radioButtonRegimeAny"
@@ -30,9 +31,11 @@
                 android:id="@+id/radioButtonFlexible"
                 style="@style/DialogRadioButtonTheme"
                 android:text="@string/flexible" />
-        </LinearLayout>
+        </RadioGroup>
 
-        <LinearLayout style="@style/DialogLinearLayoutTheme">
+        <RadioGroup
+            android:id="@+id/radioGroupRegimeSecond"
+            style="@style/DialogLinearLayoutTheme">
 
             <RadioButton
                 android:id="@+id/radioButtonRemotely"
@@ -43,22 +46,23 @@
                 android:id="@+id/radioButtonNight"
                 style="@style/DialogRadioButtonTheme"
                 android:text="@string/night" />
-        </LinearLayout>
-    </RadioGroup>
+        </RadioGroup>
+    </LinearLayout>
 
-    <com.example.saint.aukg.ui.fonts.TextFontBold
+    <com.example.saint.aukg.ui.custom_views.TextFontBold
         android:id="@+id/textViewSalary"
         style="@style/DialogTextTheme"
-        android:layout_below="@id/radioGroupRegime"
+        android:layout_below="@id/linearRegime"
         android:text="@string/salary" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupSalary"
+    <LinearLayout
+        android:id="@+id/linearSalary"
         style="@style/DialogRadioGroupTheme"
-        android:layout_below="@id/textViewSalary"
-        android:weightSum="2.2">
+        android:layout_below="@id/textViewSalary">
 
-        <LinearLayout style="@style/DialogLinearLayoutTheme">
+        <RadioGroup
+            android:id="@+id/radioGroupSalaryFirst"
+            style="@style/DialogLinearLayoutTheme">
 
             <RadioButton
                 android:id="@+id/radioButtonSalaryAny"
@@ -69,9 +73,11 @@
                 android:id="@+id/radioButtonFiveMore"
                 style="@style/DialogRadioButtonTheme"
                 android:text="@string/five_thousand" />
-        </LinearLayout>
+        </RadioGroup>
 
-        <LinearLayout style="@style/DialogLinearLayoutTheme">
+        <RadioGroup
+            android:id="@+id/radioGroupSalarySecond"
+            style="@style/DialogLinearLayoutTheme">
 
             <RadioButton
                 android:id="@+id/radioButtonTenMore"
@@ -82,12 +88,12 @@
                 android:id="@+id/radioButtonThirtyMore"
                 style="@style/DialogRadioButtonTheme"
                 android:text="@string/thirty_thousand" />
-        </LinearLayout>
-    </RadioGroup>
+        </RadioGroup>
+    </LinearLayout>
 
     <LinearLayout
         style="@style/DialogLinearLayoutButtonTheme"
-        android:layout_below="@id/radioGroupSalary">
+        android:layout_below="@id/linearSalary">
 
         <Button
             android:id="@+id/buttonReset"

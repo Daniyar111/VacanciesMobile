@@ -3,16 +3,15 @@ package com.example.saint.aukg.ui;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
-/**
- * Created by saint on 15.04.2018.
- */
+import com.example.saint.aukg.R;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseDialogFragment extends DialogFragment{
 
     protected abstract int getViewLayout();
 
@@ -23,5 +22,12 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getViewLayout(), container, false);
 
         return view;
+    }
+
+    protected void removeDialogToolbarAndSetAnimation(){
+        if(getDialog().getWindow() != null){
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogFragmentAnimation;
+        }
     }
 }

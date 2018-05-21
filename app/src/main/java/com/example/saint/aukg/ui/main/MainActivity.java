@@ -6,21 +6,11 @@ import android.view.MenuItem;
 
 import com.example.saint.aukg.R;
 import com.example.saint.aukg.ui.BaseActivity;
-import com.example.saint.aukg.ui.search.DialogNameFragment;
+import com.example.saint.aukg.ui.search.DialogSearchFragment;
 
 public class MainActivity extends BaseActivity {
 
-    private DialogNameFragment searchFragment;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getViewLayout());
-
-        getToolbar();
-        getDrawer();
-        getTabLayout();
-    }
+    private DialogSearchFragment mSearchfragment;
 
     @Override
     protected int getViewLayout() {
@@ -33,6 +23,16 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getViewLayout());
+
+        getToolbar(getResources().getString(R.string.aukg), false);
+        getDrawer();
+        getTabLayout();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.search_action, menu);
@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        searchFragment = new DialogNameFragment();
-        searchFragment.show(getSupportFragmentManager(), "fragment");
+        mSearchfragment = new DialogSearchFragment();
+        mSearchfragment.show(getSupportFragmentManager(), "fragment");
         return super.onOptionsItemSelected(item);
     }
 

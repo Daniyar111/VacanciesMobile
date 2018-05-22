@@ -119,10 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Drawer.O
 
         switch ((int) drawerItem.getIdentifier()){
             case 1:
-
                 Intent intent = new Intent(this, ElectedActivity.class);
                 startActivity(intent);
-
+                mDrawer.setSelection(-1);
                 break;
             case 2:
                 finish();

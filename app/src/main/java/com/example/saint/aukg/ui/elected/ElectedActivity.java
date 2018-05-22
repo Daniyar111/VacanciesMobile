@@ -35,12 +35,6 @@ public class ElectedActivity extends BaseActivity {
 
         mSQLiteHelper = AuApplication.get(getApplicationContext()).getSQLiteHelper();
         mVacancyModels = mSQLiteHelper.getElectedVacancies();
-        if(mVacancyModels.size() == 0){
-            switchFragment(new EmptyFragment());
-        }
-        else{
-            switchFragment(new ElectedFragment());
-        }
     }
 
     @Override
@@ -53,5 +47,20 @@ public class ElectedActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void readyFragments(){
+        if(mVacancyModels.size() == 0){
+            switchFragment(new EmptyFragment());
+        }
+        else{
+            switchFragment(new ElectedFragment());
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        readyFragments();
     }
 }

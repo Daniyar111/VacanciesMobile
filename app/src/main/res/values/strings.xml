@@ -16,7 +16,7 @@
     <string name="five_thousand">5 000 +</string>
     <string name="flexible">Гибкий</string>
     <string name="full">Полный день</string>
-    <string name="give_permission">Предоставить приложению права для выполнении этой функции</string>
+    <string name="give_permission">Предоставить приложению права для выполнении этой функции?</string>
     <string name="just_dial">Только набрать</string>
     <string name="next">Следующее</string>
     <string name="night">Ночной</string>

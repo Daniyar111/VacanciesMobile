@@ -6,7 +6,7 @@ package com.example.saint.vacancies_mobile.utils;
 
 public class Constants {
 
-    public static final String BASE_URL = "https://au.kg/";
-    public static final String MOBILE_API = "mobile-api.php";
+    public static final String BASE_URL = "https://elrealo.cf/";
+    public static final String MOBILE_API = "daniyar.html";
     public static final int REQUEST_PHONE_CALL = 1;
 }

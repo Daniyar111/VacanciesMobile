@@ -27,36 +27,6 @@
         <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
-    <style name="SplashScreenTextTheme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="SplashScreenRelativeLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/splash_screen_background</item>
-    </style>
-
-    <style name="SplashScreenLinearLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:paddingBottom">@dimen/padding_forty</item>
-    </style>
-
-    <style name="SplashScreenImageLogoTheme">
-        <item name="android:layout_width">140sp</item>
-        <item name="android:layout_height">140sp</item>
-        <item name="android:src">@drawable/logo</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginBottom">@dimen/margin_ten</item>
-    </style>
-
     <style name="DialogTextTheme">
         <item name="android:textSize">20sp</item>
         <item name="android:padding">@dimen/padding_ten</item>

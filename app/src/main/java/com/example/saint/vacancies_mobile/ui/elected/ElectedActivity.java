@@ -3,7 +3,7 @@ package com.example.saint.vacancies_mobile.ui.elected;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
 import com.example.saint.vacancies_mobile.data.models.VacancyModel;
@@ -33,7 +33,7 @@ public class ElectedActivity extends BaseActivity {
 
         getToolbar(getResources().getString(R.string.elected), true);
 
-        mSQLiteHelper = AuApplication.get(getApplicationContext()).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(getApplicationContext()).getSQLiteHelper();
         mVacancyModels = mSQLiteHelper.getElectedVacancies();
     }
 

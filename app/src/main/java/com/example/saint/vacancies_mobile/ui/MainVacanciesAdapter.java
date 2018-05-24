@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
 import com.example.saint.vacancies_mobile.data.models.VacancyModel;
@@ -56,7 +56,7 @@ public class MainVacanciesAdapter extends RecyclerView.Adapter<MainVacanciesAdap
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_vacancy, parent, false);
-        mSQLiteHelper = AuApplication.get(parent.getContext()).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(parent.getContext()).getSQLiteHelper();
 
         return new ViewHolder(view);
     }

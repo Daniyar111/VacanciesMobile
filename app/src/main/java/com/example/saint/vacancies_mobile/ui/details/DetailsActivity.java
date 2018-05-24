@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
 import com.example.saint.vacancies_mobile.data.models.VacancyModel;
@@ -68,7 +68,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         getToolbar(getResources().getString(R.string.vacancies), true);
 
-        mSQLiteHelper = AuApplication.get(getApplicationContext()).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(getApplicationContext()).getSQLiteHelper();
 
         initialize();
 

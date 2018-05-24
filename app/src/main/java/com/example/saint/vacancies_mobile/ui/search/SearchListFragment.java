@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.RetrofitService;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
@@ -55,7 +55,7 @@ public class SearchListFragment extends BaseFragment implements VacanciesAdapter
         }
         mProgressBar = view.findViewById(R.id.progressBar);
 
-        mSQLiteHelper = AuApplication.get(mContext).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(mContext).getSQLiteHelper();
 
         getRecyclerView(view);
         setSwipeRefreshLayout(view);
@@ -82,7 +82,7 @@ public class SearchListFragment extends BaseFragment implements VacanciesAdapter
         mSalary = mSQLiteHelper.getRadioButtons().getSalary();
         mTerm = mSQLiteHelper.getRadioButtons().getRegime();
 
-        mService = AuApplication.get(mContext).getService();
+        mService = StartApplication.get(mContext).getService();
         mService.postSearchingVacancies("daniyar", "search", "20", String.valueOf(mPage), mSalary, mTerm)
                 .enqueue(new Callback<ArrayList<VacancyModel>>() {
                     @Override

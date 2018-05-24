@@ -7,7 +7,7 @@ import com.example.saint.vacancies_mobile.data.NetworkBuilder;
 import com.example.saint.vacancies_mobile.data.RetrofitService;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
 
-public class AuApplication extends Application{
+public class StartApplication extends Application{
     private RetrofitService mService;
     private SQLiteHelper mSQLiteHelper;
 
@@ -18,8 +18,8 @@ public class AuApplication extends Application{
         mSQLiteHelper = new SQLiteHelper(getApplicationContext());
     }
 
-    public static AuApplication get(Context context){
-        return (AuApplication) context.getApplicationContext();
+    public static StartApplication get(Context context){
+        return (StartApplication) context.getApplicationContext();
     }
 
     public RetrofitService getService() {

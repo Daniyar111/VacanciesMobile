@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
 import com.example.saint.vacancies_mobile.data.models.VacancyModel;
@@ -40,7 +40,7 @@ public class ElectedFragment extends BaseFragment implements VacanciesAdapterCal
         if(getActivity() != null){
             mContext = getActivity().getApplicationContext();
         }
-        mSQLiteHelper = AuApplication.get(mContext).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(mContext).getSQLiteHelper();
 
         getRecyclerView(view);
     }

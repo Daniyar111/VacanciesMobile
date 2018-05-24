@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.example.saint.vacancies_mobile.AuApplication;
+import com.example.saint.vacancies_mobile.StartApplication;
 import com.example.saint.vacancies_mobile.R;
 import com.example.saint.vacancies_mobile.data.RetrofitService;
 import com.example.saint.vacancies_mobile.data.db.SQLiteHelper;
@@ -59,7 +59,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
         }
         mProgressBar = view.findViewById(R.id.progressBar);
 
-        mSQLiteHelper = AuApplication.get(mContext).getSQLiteHelper();
+        mSQLiteHelper = StartApplication.get(mContext).getSQLiteHelper();
 
         getRecyclerView(view);
         setSwipyRefreshLayout(view);
@@ -82,7 +82,7 @@ public class VacanciesFragment extends BaseFragment implements VacanciesAdapterC
 
         mProgressBar.setVisibility(View.VISIBLE);
 
-        mService = AuApplication.get(mContext).getService();
+        mService = StartApplication.get(mContext).getService();
         mService.postVacancies("daniyar", "get", "20", String.valueOf(mPage))
                 .enqueue(new Callback<ArrayList<VacancyModel>>() {
                     @Override

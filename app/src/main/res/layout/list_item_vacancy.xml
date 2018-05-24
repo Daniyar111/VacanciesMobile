@@ -25,7 +25,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
-                        <com.example.saint.aukg.ui.custom_views.TextFontBold
+                        <com.example.saint.vacancies_mobile.ui.custom_views.TextFontBold
                             android:id="@+id/textViewProfession"
                             style="@style/VacanciesTextFontBoldTheme"
                             android:layout_centerInParent="true"/>
@@ -34,7 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="2">
-                        <com.example.saint.aukg.ui.custom_views.TextFontLight
+                        <com.example.saint.vacancies_mobile.ui.custom_views.TextFontLight
                             android:id="@+id/textViewDate"
                             style="@style/VacanciesTextFontDateTheme"/>
                     </RelativeLayout>
@@ -52,7 +52,7 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_profile_name" />
 
-                <com.example.saint.aukg.ui.custom_views.TextFontLight
+                <com.example.saint.vacancies_mobile.ui.custom_views.TextFontLight
                     android:id="@+id/textViewHeader"
                     style="@style/VacanciesTextFontHeaderTheme"
                     android:layout_toEndOf="@id/imageProfile"
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
-                        <com.example.saint.aukg.ui.custom_views.TextFontLight
+                        <com.example.saint.vacancies_mobile.ui.custom_views.TextFontLight
                             android:id="@+id/textViewSalary"
                             style="@style/VacanciesTextFontTelephoneTheme"
                             android:layout_centerInParent="true" />
@@ -101,7 +101,7 @@
                     style="@style/VacanciesFrameImageTheme"
                     android:background="@drawable/ic_status_watched" />
 
-                <com.example.saint.aukg.ui.custom_views.TextFontLight
+                <com.example.saint.vacancies_mobile.ui.custom_views.TextFontLight
                     android:id="@+id/textViewWatched"
                     style="@style/VacanciesTextWatchedTheme"
                     android:layout_toEndOf="@id/imageWatched"

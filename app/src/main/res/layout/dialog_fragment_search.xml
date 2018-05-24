@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.saint.aukg.ui.custom_views.TextFontBold
+    <com.example.saint.vacancies_mobile.ui.custom_views.TextFontBold
         android:id="@+id/textViewRegime"
         style="@style/DialogTextTheme"
         android:text="@string/regime" />
@@ -49,7 +49,7 @@
         </RadioGroup>
     </LinearLayout>
 
-    <com.example.saint.aukg.ui.custom_views.TextFontBold
+    <com.example.saint.vacancies_mobile.ui.custom_views.TextFontBold
         android:id="@+id/textViewSalary"
         style="@style/DialogTextTheme"
         android:layout_below="@id/linearRegime"
